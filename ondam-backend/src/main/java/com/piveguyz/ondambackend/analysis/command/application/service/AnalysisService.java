@@ -1,4 +1,6 @@
 package com.piveguyz.ondambackend.analysis.command.application.service;
 
-public class AnalysisService {
+public interface AnalysisService {
+
+    String askGpt(String prompt, String fileContent);
 }
