@@ -1,15 +1,17 @@
 package com.piveguyz.ondambackend.diary.query.mapper;
 
-import com.piveguyz.ondambackend.diary.query.dto.DiaryDTO;
+import com.piveguyz.ondambackend.diary.query.dto.DiaryQueryDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
 public interface DiaryMapper {
-    List<DiaryDTO> findAllDiary();
+    List<DiaryQueryDTO> findAllDiary();
 
-    List<DiaryDTO> findActivatedDiary();
+    List<DiaryQueryDTO> findActivatedDiary();
 
-    List<DiaryDTO> findDiaryByUserId(Integer userId);
+    DiaryQueryDTO findDiaryById(Integer id);
+
+    List<DiaryQueryDTO> findDiaryByMemberId(Integer memberId);
 }

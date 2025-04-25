@@ -5,7 +5,8 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class DiaryDTO {
+public class DiaryQueryDTO {
+    private Integer id;
     private String title;
     private String content;
     private LocalDateTime createdAt;

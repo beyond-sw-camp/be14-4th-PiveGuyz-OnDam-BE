@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.piveguyz.ondambackend.diary.query.mapper.DiaryMapper">
-    <resultMap id="DiaryResultMap" type="com.piveguyz.ondambackend.diary.query.mapper.DiaryDAO">
+    <resultMap id="DiaryResultMap" type="com.piveguyz.ondambackend.diary.query.dto.DiaryQueryDTO">
         <id column="id" property="id"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
@@ -41,7 +41,7 @@
         ORDER BY created_at DESC;
     </select>
 
-    <select id="findDiaryByUserId" resultMap="DiaryResultMap">
+    <select id="findDiaryById" resultMap="DiaryResultMap">
         SELECT
             id,
             title,
@@ -52,7 +52,22 @@
             member_id
         FROM diary
         WHERE isNull(deleted_at) AND is_blinded = 'N'
-        AND member_id = #{userId}
+          AND id = #{id}
+        ORDER BY created_at DESC;
+    </select>
+
+    <select id="findDiaryByMemberId" resultMap="DiaryResultMap">
+        SELECT
+            id,
+            title,
+            content,
+            created_at,
+            deleted_at,
+            is_blinded,
+            member_id
+        FROM diary
+        WHERE isNull(deleted_at) AND is_blinded = 'N'
+        AND member_id = #{memberId}
         ORDER BY created_at DESC;
     </select>
 </mapper>

@@ -1,6 +1,6 @@
 package com.piveguyz.ondambackend.diary.query.service;
 
-import com.piveguyz.ondambackend.diary.query.dto.DiaryDTO;
+import com.piveguyz.ondambackend.diary.query.dto.DiaryQueryDTO;
 import com.piveguyz.ondambackend.diary.query.mapper.DiaryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,20 +17,26 @@ public class DiaryQueryServiceImpl implements DiaryQueryService {
     }
 
     @Override
-    public List<DiaryDTO> selectAllDiaries() {
-        List<DiaryDTO> diaryDTOList = diaryMapper.findAllDiary();
-        return diaryDTOList;
+    public List<DiaryQueryDTO> selectAllDiaries() {
+        List<DiaryQueryDTO> diaryQueryDTOList = diaryMapper.findAllDiary();
+        return diaryQueryDTOList;
     }
 
     @Override
-    public List<DiaryDTO> selectActivatedDiaries() {
-        List<DiaryDTO> diaryDTOList = diaryMapper.findActivatedDiary();
-        return diaryDTOList;
+    public List<DiaryQueryDTO> selectActivatedDiaries() {
+        List<DiaryQueryDTO> diaryQueryDTOList = diaryMapper.findActivatedDiary();
+        return diaryQueryDTOList;
     }
 
     @Override
-    public List<DiaryDTO> selectDiaryByUserId(Integer userId) {
-        List<DiaryDTO> diaryDTOList = diaryMapper.findDiaryByUserId(userId);
-        return diaryDTOList;
+    public DiaryQueryDTO selectDiaryById(Integer id) {
+        DiaryQueryDTO diaryQueryDTO = diaryMapper.findDiaryById(id);
+        return diaryQueryDTO;
+    }
+
+    @Override
+    public List<DiaryQueryDTO> selectDiaryByMemberId(Integer memberId) {
+        List<DiaryQueryDTO> diaryQueryDTOList = diaryMapper.findDiaryByMemberId(memberId);
+        return diaryQueryDTOList;
     }
 }

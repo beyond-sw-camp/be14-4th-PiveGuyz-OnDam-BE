@@ -1,14 +1,16 @@
 package com.piveguyz.ondambackend.diary.query.service;
 
-import com.piveguyz.ondambackend.diary.query.dto.DiaryDTO;
+import com.piveguyz.ondambackend.diary.query.dto.DiaryQueryDTO;
 
 import java.util.List;
 
 public interface DiaryQueryService {
 
-    List<DiaryDTO> selectAllDiaries();
+    List<DiaryQueryDTO> selectAllDiaries();
 
-    List<DiaryDTO> selectActivatedDiaries();
+    List<DiaryQueryDTO> selectActivatedDiaries();
 
-    List<DiaryDTO> selectDiaryByUserId(Integer userId);
+    List<DiaryQueryDTO> selectDiaryByMemberId(Integer memberId);
+
+    DiaryQueryDTO selectDiaryById(Integer id);
 }
