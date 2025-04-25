@@ -1,6 +1,8 @@
 package com.piveguyz.ondambackend.analysis.command.application.service;
+import com.piveguyz.ondambackend.analysis.command.application.dto.ChatCompletionDTO;
+import java.util.Map;
 
 public interface AnalysisService {
 
-    String askGpt(String prompt, String fileContent);
+    Map<String, Object> askGpt(ChatCompletionDTO chatCompletionDto);
 }

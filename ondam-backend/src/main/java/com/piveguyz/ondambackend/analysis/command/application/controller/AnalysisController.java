@@ -1,37 +1,35 @@
 package com.piveguyz.ondambackend.analysis.command.application.controller;
 
+import com.piveguyz.ondambackend.analysis.command.application.dto.ChatCompletionDTO;
 import com.piveguyz.ondambackend.analysis.command.application.service.AnalysisService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 
-import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/analysis")
+@Slf4j
 public class AnalysisController {
 
     private final AnalysisService analysisService;
 
-    @Autowired
     public AnalysisController(AnalysisService analysisService) {
         this.analysisService = analysisService;
     }
 
-    @PostMapping("/gpt")
-    public ResponseEntity<?> askGpt(@RequestParam("prompt") String prompt, @RequestParam("file") MultipartFile file) {
+    @PostMapping("/gpt/prompt")
+    public ResponseEntity<Map<String, Object>> selectPrompt(@RequestBody ChatCompletionDTO chatCompletionDto) {
+        log.info("chatCompletionDto : " + chatCompletionDto.toString());
 
-        try {
-            String fileContent = new String(file.getBytes(), StandardCharsets.UTF_8);
-            String result = analysisService.askGpt(prompt, fileContent);
-            return ResponseEntity.ok().body(result);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("에러 발생: " + e.getMessage());
+        if (chatCompletionDto.getMessages() == null || chatCompletionDto.getMessages().isEmpty()) {
+            return new ResponseEntity<>(Map.of("error", "User message is required"), HttpStatus.BAD_REQUEST);
         }
+
+        Map<String, Object> result = analysisService.askGpt(chatCompletionDto);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }
