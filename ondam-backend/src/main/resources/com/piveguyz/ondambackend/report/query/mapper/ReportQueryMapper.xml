@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.piveguyz.ondambackend.report.query.mapper.ReportQueryMapper">
+
+    <resultMap id="ReportListMap" type="com.piveguyz.ondambackend.report.query.dto.ReportListQueryDTO">
+        <id property="id" column="id"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="status" column="status" typeHandler="com.piveguyz.ondambackend.report.query.typehandler.ReportStatusTypeHandler"/>
+        <result property="memberId" column="member_id"/>
+        <result property="reporterName" column="reporter_name"/>
+        <result property="reportedMemberId" column="reported_member_id"/>
+        <result property="reportedMemberName" column="reported_member_name"/>
+        <result property="diaryId" column="diary_id"/>
+        <result property="replyId" column="reply_id"/>
+        <result property="reportCategoryId" column="report_category_id"/>
+        <result property="reportCategoryName" column="report_category_name"/>
+    </resultMap>
+
+    <!-- 신고 목록 전체 조회 -->
+    <select id="selectReportList" resultMap="ReportListMap">
+        SELECT
+               r.id
+             , r.created_at
+             , r.status
+             , r.member_id
+             , m1.name AS reporter_name
+             , r.reported_member_id
+             , m2.name AS reported_member_name
+             , r.diary_id
+             , r.reply_id
+             , r.report_category_id
+             , rc.name AS report_category_name
+          FROM report r
+          LEFT JOIN member m1 ON r.member_id = m1.id
+          LEFT JOIN member m2 ON r.reported_member_id = m2.id
+          LEFT JOIN report_category rc ON r.report_category_id = rc.id
+        <where>
+            <if test="status != null">
+                r.status = #{status}
+            </if>
+        </where>
+        <choose>
+            <when test="order == 'asc'">
+                ORDER BY r.created_at ASC
+            </when>
+            <otherwise>
+                ORDER BY r.created_at DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- 신고 상세 조회 -->
+    <select id="selectReportDetail" resultType="com.piveguyz.ondambackend.report.query.dto.ReportDetailQueryDTO">
+        SELECT
+               r.id AS reportId
+             , m2.name AS reportedMemberName
+             , rc.name AS reportCategoryName
+             , r.reason
+             , r.created_at
+          FROM report r
+          LEFT JOIN member m2 ON r.reported_member_id = m2.id
+          LEFT JOIN report_category rc ON r.report_category_id = rc.id
+         WHERE r.id = #{id}
+    </select>
+
+    <!-- 신고 컨텐츠 조회 -->
+    <select id="selectReportedContent" resultType="com.piveguyz.ondambackend.report.query.dto.ReportContentQueryDTO">
+        SELECT
+               COALESCE(d.title, rep.title) AS title
+             , DATE_FORMAT(COALESCE(d.created_at, rep.created_at), '%Y-%m-%d %H:%i') AS createdAt
+             , COALESCE(d.content, rep.content) AS content
+          FROM report r
+          LEFT JOIN diary d ON r.diary_id = d.id
+          LEFT JOIN reply rep ON r.reply_id = rep.id
+         WHERE r.id = #{reportId}
+    </select>
+
+    <!-- 신고 카테고리 조회 -->
+    <select id="selectReportCategoryList" resultType="com.piveguyz.ondambackend.report.query.dto.ReportCategoryQueryDTO">
+        SELECT
+            id,
+            name
+        FROM report_category
+        WHERE deleted_at IS NULL
+    </select>
+
+</mapper>
