@@ -1,7 +1,7 @@
 package com.piveguyz.ondambackend.counselee.query.controller;
 
 import com.piveguyz.ondambackend.common.response.ErrorResponse;
-import com.piveguyz.ondambackend.counselee.query.dto.CounseleeDTO;
+import com.piveguyz.ondambackend.counselee.query.dto.CounseleeQueryDTO;
 import com.piveguyz.ondambackend.counselee.query.service.CounseleeQueryService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -19,33 +19,33 @@ public class CounseleeQueryController {
 
     // 내담자 목록 조회
     @GetMapping
-    public ResponseEntity<List<CounseleeDTO>> getCounseleesByMemberId(
+    public ResponseEntity<List<CounseleeQueryDTO>> getCounseleesByMemberId(
             @RequestParam Long memberId) {
-        List<CounseleeDTO> counselees = counseleeService.findAllByMemberId(memberId);
+        List<CounseleeQueryDTO> counselees = counseleeService.findAllByMemberId(memberId);
         return ResponseEntity.ok(counselees);
     }
 
     // 내담자 상세 조회
     @GetMapping("/{id}")
-    public ResponseEntity<CounseleeDTO> getCounselee(@PathVariable Long id) {
-        CounseleeDTO counselee = counseleeService.findById(id);
+    public ResponseEntity<CounseleeQueryDTO> getCounselee(@PathVariable Long id) {
+        CounseleeQueryDTO counselee = counseleeService.findById(id);
         return ResponseEntity.ok(counselee);
     }
 
     // 내담자 이름으로 검색
     @GetMapping("/search")
-    public ResponseEntity<List<CounseleeDTO>> searchCounselees(
+    public ResponseEntity<List<CounseleeQueryDTO>> searchCounselees(
             @RequestParam Long memberId,
             @RequestParam String name) {
-        List<CounseleeDTO> counselees = counseleeService.searchByName(memberId, name);
+        List<CounseleeQueryDTO> counselees = counseleeService.searchByName(memberId, name);
         return ResponseEntity.ok(counselees);
     }
 
     // 활성 내담자 목록 조회
     @GetMapping("/active")
-    public ResponseEntity<List<CounseleeDTO>> getActiveCounselees(
+    public ResponseEntity<List<CounseleeQueryDTO>> getActiveCounselees(
             @RequestParam Long memberId) {
-        List<CounseleeDTO> activeCounselees = counseleeService.findActiveCounselees(memberId);
+        List<CounseleeQueryDTO> activeCounselees = counseleeService.findActiveCounselees(memberId);
         return ResponseEntity.ok(activeCounselees);
     }
 

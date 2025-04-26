@@ -3,7 +3,7 @@
 
 <mapper namespace="com.piveguyz.ondambackend.counselee.query.mapper.CounseleeMapper">
 
-    <resultMap id="counseleeDTOResultMap" type="com.piveguyz.ondambackend.counselee.query.dto.CounseleeDTO">
+    <resultMap id="counseleeDTOResultMap" type="com.piveguyz.ondambackend.counselee.query.dto.CounseleeQueryDTO">
     <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="birthday" column="birthday"/>
@@ -71,5 +71,5 @@
         WHERE member_id = #{memberId}
         AND deleted_at IS NULL
     </select>
-    
+
 </mapper>

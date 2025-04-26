@@ -1,6 +1,6 @@
 package com.piveguyz.ondambackend.counselee.command.application.service;
 
-import com.piveguyz.ondambackend.counselee.command.application.dto.CounseleeCreateDTO;
+import com.piveguyz.ondambackend.counselee.command.application.dto.CounseleeCommandDTO;
 import com.piveguyz.ondambackend.counselee.command.domain.aggregate.entity.CounseleeEntity;
 import com.piveguyz.ondambackend.counselee.command.domain.aggregate.vo.Birthday;
 import com.piveguyz.ondambackend.counselee.command.domain.aggregate.vo.Gender;
@@ -21,7 +21,7 @@ public class CounseleeCommandServiceImpl implements CounseleeCommandService {
 
     @Override
     @Transactional
-    public Long createCounselee(CounseleeCreateDTO dto) {
+    public Long createCounselee(CounseleeCommandDTO dto) {
         log.info("Creating new counselee for member id: {}", dto.getMemberId());
 
         CounseleeEntity counselee = CounseleeEntity.builder()
@@ -41,7 +41,7 @@ public class CounseleeCommandServiceImpl implements CounseleeCommandService {
 
     @Override
     @Transactional
-    public void updateCounselee(Long id, CounseleeCreateDTO dto) {
+    public void updateCounselee(Long id, CounseleeCommandDTO dto) {
         log.info("Updating counselee with id: {}", id);
 
         CounseleeEntity counselee = counseleeRepository.findById(id)

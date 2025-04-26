@@ -1,7 +1,7 @@
 package com.piveguyz.ondambackend.counselee.command.application.controller;
 
 import com.piveguyz.ondambackend.common.response.ErrorResponse;
-import com.piveguyz.ondambackend.counselee.command.application.dto.CounseleeCreateDTO;
+import com.piveguyz.ondambackend.counselee.command.application.dto.CounseleeCommandDTO;
 import com.piveguyz.ondambackend.counselee.command.application.service.CounseleeCommandService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -20,7 +20,7 @@ public class CounseleeCommandController {
     private final CounseleeCommandService counseleeService;
 
     @PostMapping
-    public ResponseEntity<Void> createCounselee(@Valid @RequestBody CounseleeCreateDTO dto) {
+    public ResponseEntity<Void> createCounselee(@Valid @RequestBody CounseleeCommandDTO dto) {
         Long id = counseleeService.createCounselee(dto);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -33,7 +33,7 @@ public class CounseleeCommandController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateCounselee(
             @PathVariable Long id,
-            @Valid @RequestBody CounseleeCreateDTO dto) {
+            @Valid @RequestBody CounseleeCommandDTO dto) {
         counseleeService.updateCounselee(id, dto);
         return ResponseEntity.noContent().build();
     }

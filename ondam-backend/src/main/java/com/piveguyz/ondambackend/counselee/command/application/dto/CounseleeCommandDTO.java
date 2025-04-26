@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class CounseleeCreateDTO {
+public class CounseleeCommandDTO {
 
     @NotNull(message = "상담사 ID는 필수입니다")
     private Long memberId;
@@ -20,13 +20,11 @@ public class CounseleeCreateDTO {
     @NotEmpty(message = "생년월일은 필수입니다")
     @Pattern(regexp = "^\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$",
             message = "생년월일은 YYYY-MM-DD 형식이어야 합니다")
-
     private String birthday;
 
     @NotEmpty(message = "성별은 필수입니다")
     @Pattern(regexp = "^(M|F)$",
             message = "성별은 M 또는 F이어야 합니다")
-
     private String gender;
 
     @NotEmpty(message = "연락처는 필수입니다")
@@ -43,8 +41,8 @@ public class CounseleeCreateDTO {
     private Integer severityLevel;
 
     @Builder
-    public CounseleeCreateDTO(Long memberId, String name, String birthday, String gender,
-                             String phone, String emePhone, String address, Integer severityLevel) {
+    public CounseleeCommandDTO(Long memberId, String name, String birthday, String gender,
+                               String phone, String emePhone, String address, Integer severityLevel) {
         this.memberId = memberId;
         this.name = name;
         this.birthday = birthday;
