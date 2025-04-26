@@ -149,3 +149,5 @@ applicaiton.properties
 
 # intellij
 *.idea
+
+config
