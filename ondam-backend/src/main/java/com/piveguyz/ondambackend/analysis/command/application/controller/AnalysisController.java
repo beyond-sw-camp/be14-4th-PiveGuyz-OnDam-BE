@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/analysis")
+@RequestMapping("/api/v1/analysis")
 @Slf4j
 public class AnalysisController {
 
