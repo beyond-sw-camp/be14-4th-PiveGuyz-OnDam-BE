@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan({
         "com.piveguyz.ondambackend.diary.query.mapper",
-        "com.piveguyz.ondambackend.diaryRecord.query.mapper"
+        "com.piveguyz.ondambackend.diaryRecord.query.mapper",
+        "com.piveguyz.ondambackend.member.query.mapper"
 })
 public class OndamBackendApplication {
 
