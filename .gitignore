@@ -147,5 +147,7 @@ replay_pid*
 application.yml
 applicaiton.properties
 
+db_schema.sql
+
 # intellij
 *.idea
