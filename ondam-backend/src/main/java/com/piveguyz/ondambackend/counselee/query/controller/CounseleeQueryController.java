@@ -2,7 +2,7 @@ package com.piveguyz.ondambackend.counselee.query.controller;
 
 import com.piveguyz.ondambackend.common.response.ErrorResponse;
 import com.piveguyz.ondambackend.counselee.query.dto.CounseleeDTO;
-import com.piveguyz.ondambackend.counselee.query.service.CounseleeService;
+import com.piveguyz.ondambackend.counselee.query.service.CounseleeQueryService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/counselees")
 @RequiredArgsConstructor
-public class CounseleeController {
+public class CounseleeQueryController {
 
-    private final CounseleeService counseleeService;
+    private final CounseleeQueryService counseleeService;
 
     // 내담자 목록 조회
     @GetMapping
@@ -54,13 +54,6 @@ public class CounseleeController {
     public ResponseEntity<Integer> getCounseleeCount(@RequestParam Long memberId) {
         int count = counseleeService.countByMemberId(memberId);
         return ResponseEntity.ok(count);
-    }
-
-    // 내담자 삭제
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCounselee(@PathVariable Long id) {
-        counseleeService.deleteCounselee(id);
-        return ResponseEntity.noContent().build();
     }
 
     // 예외 처리

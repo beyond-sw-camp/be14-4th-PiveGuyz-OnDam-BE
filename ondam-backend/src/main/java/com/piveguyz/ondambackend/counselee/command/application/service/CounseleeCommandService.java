@@ -2,7 +2,7 @@ package com.piveguyz.ondambackend.counselee.command.application.service;
 
 import com.piveguyz.ondambackend.counselee.command.application.dto.CounseleeCreateDTO;
 
-public interface CounseleeService {
+public interface CounseleeCommandService {
     // 생성
     Long createCounselee(CounseleeCreateDTO dto);
     

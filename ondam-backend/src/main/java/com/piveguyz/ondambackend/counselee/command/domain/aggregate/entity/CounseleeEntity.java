@@ -1,5 +1,8 @@
 package com.piveguyz.ondambackend.counselee.command.domain.aggregate.entity;
 
+import com.piveguyz.ondambackend.counselee.command.domain.aggregate.vo.Birthday;
+import com.piveguyz.ondambackend.counselee.command.domain.aggregate.vo.Gender;
+import com.piveguyz.ondambackend.counselee.command.domain.aggregate.vo.PhoneNumber;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -23,18 +26,22 @@ public class CounseleeEntity {
     
     @Column(nullable = false)
     private String name;
-    
-    @Column(nullable = false)
-    private String birthday;
-    
-    @Column(nullable = false)
-    private String gender;
-    
-    @Column(nullable = false)
-    private String phone;
-    
-    private String emePhone;
-    
+
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "birthday"))
+    private Birthday birthday;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Embedded
+    @AttributeOverride(name = "number", column = @Column(name = "phone"))
+    private PhoneNumber phone;
+
+    @Embedded
+    @AttributeOverride(name = "number", column = @Column(name = "eme_phone"))
+    private PhoneNumber emePhone;
+
     private String address;
     
     private Integer severityLevel;
@@ -51,8 +58,8 @@ public class CounseleeEntity {
     private String endReason;
 
     @Builder
-    public CounseleeEntity(Long memberId, String name, String birthday, String gender,
-                          String phone, String emePhone, String address, Integer severityLevel) {
+    public CounseleeEntity(Long memberId, String name, Birthday birthday, Gender gender,
+                          PhoneNumber phone, PhoneNumber emePhone, String address, Integer severityLevel) {
         this.memberId = memberId;
         this.name = name;
         this.birthday = birthday;
@@ -61,11 +68,15 @@ public class CounseleeEntity {
         this.emePhone = emePhone;
         this.address = address;
         this.severityLevel = severityLevel;
+        this.updatedAt = null;
+        this.deletedAt = null;
+        this.endDate = null;
+        this.endReason = null;
         this.createdAt = LocalDateTime.now();
     }
 
-    public void update(String name, String birthday, String gender,
-                      String phone, String emePhone, String address, Integer severityLevel) {
+    public void update(String name, Birthday birthday, Gender gender,
+                       PhoneNumber phone, PhoneNumber emePhone, String address, Integer severityLevel) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
@@ -73,6 +84,9 @@ public class CounseleeEntity {
         this.emePhone = emePhone;
         this.address = address;
         this.severityLevel = severityLevel;
+        this.deletedAt = null;
+        this.endDate = null;
+        this.endReason = null;
         this.updatedAt = LocalDateTime.now();
     }
 

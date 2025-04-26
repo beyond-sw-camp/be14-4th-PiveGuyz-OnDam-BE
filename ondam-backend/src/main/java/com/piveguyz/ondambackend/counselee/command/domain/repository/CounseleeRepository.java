@@ -7,4 +7,5 @@ public interface CounseleeRepository extends JpaRepository<CounseleeEntity, Long
     boolean existsByMemberIdAndDeletedAtIsNull(Long memberId);
     CounseleeEntity findByIdAndDeletedAtIsNull(Long id);
     void deleteByIdAndDeletedAtIsNull(Long id);
+    boolean existsByMemberId(Long memberId);
 }
