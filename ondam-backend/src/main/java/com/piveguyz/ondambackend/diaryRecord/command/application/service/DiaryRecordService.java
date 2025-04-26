@@ -28,32 +28,40 @@ public class DiaryRecordService {
         this.diaryRecordRepository = diaryRecordRepository;
     }
 
-    public boolean sendDiary(int id) {
-        int[] memberId = {1,2,3,4,5,6,7,8,9,10};
-        while(true){
+    public boolean sendDiary(int diaryId) {
+        int attempt = 0;
+        int Maxattempt = 100;
+        int[] memberIdArray = {1,2,3,4,5,6,7,8,9,10};
+        while(attempt <= Maxattempt) {
+            attempt++;
             List<DiaryRecordQueryDTO> diaryRecordQueryDTOList = diaryRecordQueryService.selectAllDiaryRecord();
-            if(diaryRecordQueryDTOList.size() == memberId.length * 3){      // 일기를 모두 배분하였다.
+            List<DiaryQueryDTO> diaryQueryDTOList = diaryQueryService.selectAllDiaries();
+            if(diaryRecordQueryDTOList.size() == diaryQueryDTOList.size() * 3){      // 일기를 모두 배분하였다.
                 break;
             }
-            diaryRecordQueryDTOList = diaryRecordQueryService.selectDiaryRecordByDiaryId(id);
+            diaryRecordQueryDTOList = diaryRecordQueryService.selectDiaryRecordByDiaryId(diaryId);
             if(diaryRecordQueryDTOList.size() >= 3){        // 일기는 3명한테만 보낸다.
                 break;
             }
-            int receiverId = ((int)(memberId.length * Math.random())+1);
+            int receiverId = ((int)(memberIdArray.length * Math.random())+1);
             diaryRecordQueryDTOList = diaryRecordQueryService.selectDiaryRecordByReceiverId(receiverId);
             if(diaryRecordQueryDTOList.size() >= 3){        // 일기를 3개 받은 사람은 받지 않는다.
                 continue;
             }
-            DiaryQueryDTO diaryQueryDTO = diaryQueryService.selectDiaryById(id);
+            DiaryQueryDTO diaryQueryDTO = diaryQueryService.selectDiaryById(diaryId);
             int senderId = diaryQueryDTO.getMemberId();
-            if(senderId == receiverId){     // 본인이 작성한 일기는 본인한테 보내지지 않는다.
+            if(senderId == receiverId){     // 본인이 작성한 일기는 본인한테 보내지 않는다.
                 continue;
             }
+            DiaryRecordQueryDTO diaryRecordQueryDTO = diaryRecordQueryService.selectDiaryRecordByDiaryIdAndReceiverId(diaryId, receiverId);
+            if(diaryRecordQueryDTO != null){    // 이미 일기를 받은 사람한테는 보내지 않는다.
+                continue;
+            }
+            DiaryRecord diaryRecord = new DiaryRecord();
+            diaryRecord.setDiaryId(diaryId);
+            diaryRecord.setSenderId(senderId);
+            diaryRecord.setReceiverId(receiverId);
             try {
-                DiaryRecord diaryRecord = new DiaryRecord();
-                diaryRecord.setDiaryId(id);
-                diaryRecord.setSenderId(senderId);
-                diaryRecord.setReceiverId(receiverId);
                 diaryRecordRepository.save(diaryRecord);
             } catch (Exception e) {
                 return false;

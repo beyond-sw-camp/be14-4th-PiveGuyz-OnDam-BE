@@ -17,8 +17,8 @@ public class DiaryRecordController {
     }
 
     @PostMapping("/sendDiary")
-    public ResponseEntity<String> sendDiary(@RequestParam("id") Integer id){
-        boolean result = diaryRecordService.sendDiary(id);
+    public ResponseEntity<String> sendDiary(@RequestParam("diaryId") Integer diaryId){
+        boolean result = diaryRecordService.sendDiary(diaryId);
         if(result) {
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("일기가 전송되었습니다.");
         } else {
