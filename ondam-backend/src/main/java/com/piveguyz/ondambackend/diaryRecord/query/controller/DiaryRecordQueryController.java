@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/diaryRecord")
+@RequestMapping("/api/v1/diaryRecord")
 public class DiaryRecordQueryController {
     private DiaryRecordQueryService diaryRecordQueryService;
 
