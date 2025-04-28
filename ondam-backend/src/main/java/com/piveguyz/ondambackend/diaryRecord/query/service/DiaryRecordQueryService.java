@@ -1,16 +1,15 @@
 package com.piveguyz.ondambackend.diaryRecord.query.service;
 
 import com.piveguyz.ondambackend.diaryRecord.query.dto.DiaryRecordQueryDTO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 public interface DiaryRecordQueryService {
     List<DiaryRecordQueryDTO> selectAllDiaryRecord();
 
-    List<DiaryRecordQueryDTO> selectDiaryRecordByDiaryId(Integer diaryId);
+    List<DiaryRecordQueryDTO> selectDiaryRecordByDiaryId(Long diaryId);
 
-    List<DiaryRecordQueryDTO> selectDiaryRecordByReceiverId(Integer receiverId);
+    List<DiaryRecordQueryDTO> selectDiaryRecordByReceiverId(Long receiverId);
 
-    DiaryRecordQueryDTO selectDiaryRecordByDiaryIdAndReceiverId(Integer diaryId, Integer receiverId);
+    DiaryRecordQueryDTO selectDiaryRecordByDiaryIdAndReceiverId(Long diaryId, Long receiverId);
 }

@@ -10,9 +10,9 @@ import java.util.List;
 public interface ReplyMapper {
     List<ReplyQueryDTO> findAllReply();
 
-    ReplyQueryDTO findReplyById(Integer id);
+    ReplyQueryDTO findReplyById(Long id);
 
-    List<ReplyQueryDTO> findReplyByDiaryId(Integer diaryId);
+    List<ReplyQueryDTO> findReplyByDiaryId(Long diaryId);
 
-    List<ReplyQueryDTO> findReplyBySenderId(Integer senderId);
+    List<ReplyQueryDTO> findReplyBySenderId(Long senderId);
 }

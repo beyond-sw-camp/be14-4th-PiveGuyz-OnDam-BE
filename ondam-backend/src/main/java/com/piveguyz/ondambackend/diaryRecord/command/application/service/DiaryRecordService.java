@@ -10,6 +10,8 @@ import com.piveguyz.ondambackend.diaryRecord.command.domain.aggregate.DiaryRecor
 import com.piveguyz.ondambackend.diaryRecord.command.domain.repository.DiaryRecordRepository;
 import com.piveguyz.ondambackend.diaryRecord.query.dto.DiaryRecordQueryDTO;
 import com.piveguyz.ondambackend.diaryRecord.query.service.DiaryRecordQueryService;
+import com.piveguyz.ondambackend.member.query.dto.MemberDTO;
+import com.piveguyz.ondambackend.member.query.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,43 +22,64 @@ public class DiaryRecordService {
     private final DiaryQueryService diaryQueryService;
     private final DiaryRecordQueryService diaryRecordQueryService;
     private final DiaryRecordRepository diaryRecordRepository;
+    private final MemberService memberService;
 
     @Autowired
-    public DiaryRecordService(DiaryQueryService diaryQueryService, DiaryRecordQueryService diaryRecordQueryService, DiaryRecordRepository diaryRecordRepository) {
+    public DiaryRecordService(DiaryQueryService diaryQueryService, DiaryRecordQueryService diaryRecordQueryService, DiaryRecordRepository diaryRecordRepository, MemberService memberService) {
         this.diaryQueryService = diaryQueryService;
         this.diaryRecordQueryService = diaryRecordQueryService;
         this.diaryRecordRepository = diaryRecordRepository;
+        this.memberService = memberService;
     }
 
-    public boolean sendDiary(int diaryId) {
+    public boolean sendDiary(Long diaryId) {
         int attempt = 0;
         int Maxattempt = 100;
-        int[] memberIdArray = {1,2,3,4,5,6,7,8,9,10};
-        while(attempt <= Maxattempt) {
+
+        List<MemberDTO> allMembers = memberService.selectAllMembers(); // 회원 전부 조회
+        List<Long> availableMemberIds = allMembers.stream()
+                .filter(member -> "N".equals(member.getIsDiaryBlocked())) // isDiaryBlocked == "N" 인 회원만
+                .map(MemberDTO::getId) // id만 뽑음
+                .toList();
+
+        if (availableMemberIds.isEmpty()) {
+            return false; // 보낼 수 있는 사람이 없으면 중단
+        }
+
+        while (attempt <= Maxattempt) {
             attempt++;
             List<DiaryRecordQueryDTO> diaryRecordQueryDTOList = diaryRecordQueryService.selectAllDiaryRecord();
             List<DiaryQueryDTO> diaryQueryDTOList = diaryQueryService.selectAllDiaries();
-            if(diaryRecordQueryDTOList.size() == diaryQueryDTOList.size() * 3){      // 일기를 모두 배분하였다.
+
+            if (diaryRecordQueryDTOList.size() == diaryQueryDTOList.size() * 3) { // 모든 일기 다 배분 완료
                 break;
             }
+
             diaryRecordQueryDTOList = diaryRecordQueryService.selectDiaryRecordByDiaryId(diaryId);
-            if(diaryRecordQueryDTOList.size() >= 3){        // 일기는 3명한테만 보낸다.
+            if (diaryRecordQueryDTOList.size() >= 3) { // 하나의 일기를 3명한테만 보내야 함
                 break;
             }
-            int receiverId = ((int)(memberIdArray.length * Math.random())+1);
+
+            int randomIndex = (int) (Math.random() * availableMemberIds.size());
+            Long receiverId = availableMemberIds.get(randomIndex);
+
             diaryRecordQueryDTOList = diaryRecordQueryService.selectDiaryRecordByReceiverId(receiverId);
-            if(diaryRecordQueryDTOList.size() >= 3){        // 일기를 3개 받은 사람은 받지 않는다.
+            if (diaryRecordQueryDTOList.size() >= 3) { // 일기를 3개 받은 사람은 안 됨
                 continue;
             }
+
             DiaryQueryDTO diaryQueryDTO = diaryQueryService.selectDiaryById(diaryId);
-            int senderId = diaryQueryDTO.getMemberId();
-            if(senderId == receiverId){     // 본인이 작성한 일기는 본인한테 보내지 않는다.
+            Long senderId = diaryQueryDTO.getMemberId();
+
+            if (senderId == receiverId) { // 본인한테는 보내지 않음
                 continue;
             }
+
             DiaryRecordQueryDTO diaryRecordQueryDTO = diaryRecordQueryService.selectDiaryRecordByDiaryIdAndReceiverId(diaryId, receiverId);
-            if(diaryRecordQueryDTO != null){    // 이미 일기를 받은 사람한테는 보내지 않는다.
+            if (diaryRecordQueryDTO != null) { // 이미 받은 사람이면 패스
                 continue;
             }
+
             DiaryRecord diaryRecord = new DiaryRecord();
             diaryRecord.setDiaryId(diaryId);
             diaryRecord.setSenderId(senderId);

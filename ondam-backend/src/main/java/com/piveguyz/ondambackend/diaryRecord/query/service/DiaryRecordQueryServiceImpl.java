@@ -23,19 +23,19 @@ public class DiaryRecordQueryServiceImpl implements DiaryRecordQueryService {
     }
 
     @Override
-    public List<DiaryRecordQueryDTO> selectDiaryRecordByDiaryId(Integer diaryId) {
+    public List<DiaryRecordQueryDTO> selectDiaryRecordByDiaryId(Long diaryId) {
         List<DiaryRecordQueryDTO> diaryRecordQueryDTOList = diaryRecordMapper.findDiaryRecordByDiaryId(diaryId);
         return diaryRecordQueryDTOList;
     }
 
     @Override
-    public List<DiaryRecordQueryDTO> selectDiaryRecordByReceiverId(Integer receiverId) {
+    public List<DiaryRecordQueryDTO> selectDiaryRecordByReceiverId(Long receiverId) {
         List<DiaryRecordQueryDTO> diaryRecordQueryDTOList = diaryRecordMapper.findDiaryRecordByReceiverId(receiverId);
         return diaryRecordQueryDTOList;
     }
 
     @Override
-    public DiaryRecordQueryDTO selectDiaryRecordByDiaryIdAndReceiverId(Integer diaryId, Integer receiverId) {
+    public DiaryRecordQueryDTO selectDiaryRecordByDiaryIdAndReceiverId(Long diaryId, Long receiverId) {
         DiaryRecordQueryDTO diaryRecordQueryDTO
                 = diaryRecordMapper.findDiaryRecordByDiaryIdAndReceiverId(diaryId, receiverId);
         return diaryRecordQueryDTO;

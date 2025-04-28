@@ -28,21 +28,21 @@ public class DiaryRecordQueryController {
     }
 
     @GetMapping("/findDiaryRecordByDiaryId")
-    public List<DiaryRecordQueryDTO> findDiaryRecordByDiaryId(@RequestParam("diaryId") Integer diaryId) {
+    public List<DiaryRecordQueryDTO> findDiaryRecordByDiaryId(@RequestParam("diaryId") Long diaryId) {
         List<DiaryRecordQueryDTO> diaryRecordQueryDTOList = diaryRecordQueryService.selectDiaryRecordByDiaryId(diaryId);
         return diaryRecordQueryDTOList;
     }
 
     @GetMapping("/findDiaryRecordByReceiverId")
-    public List<DiaryRecordQueryDTO> findDiaryRecordByReceiverId(@RequestParam("receiverId") Integer receiverId) {
+    public List<DiaryRecordQueryDTO> findDiaryRecordByReceiverId(@RequestParam("receiverId") Long receiverId) {
         List<DiaryRecordQueryDTO> diaryRecordQueryDTOList
                 = diaryRecordQueryService.selectDiaryRecordByReceiverId(receiverId);
         return diaryRecordQueryDTOList;
     }
 
     @GetMapping("/findDiaryRecordByDiaryIdAndReceiverId")
-    public DiaryRecordQueryDTO findDiaryRecordByDiaryIdAndReceiverId(@RequestParam("diaryId") Integer diaryId,
-                                                                           @RequestParam("receiverId") Integer receiverId) {
+    public DiaryRecordQueryDTO findDiaryRecordByDiaryIdAndReceiverId(@RequestParam("diaryId") Long diaryId,
+                                                                           @RequestParam("receiverId") Long receiverId) {
         DiaryRecordQueryDTO diaryRecordQueryDTO
                 = diaryRecordQueryService.selectDiaryRecordByDiaryIdAndReceiverId(diaryId, receiverId);
         return diaryRecordQueryDTO;

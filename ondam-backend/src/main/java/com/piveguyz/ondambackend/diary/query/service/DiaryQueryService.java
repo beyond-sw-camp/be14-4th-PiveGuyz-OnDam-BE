@@ -10,7 +10,7 @@ public interface DiaryQueryService {
 
     List<DiaryQueryDTO> selectActivatedDiaries();
 
-    List<DiaryQueryDTO> selectDiaryByMemberId(Integer memberId);
+    List<DiaryQueryDTO> selectDiaryByMemberId(Long memberId);
 
-    DiaryQueryDTO selectDiaryById(Integer id);
+    DiaryQueryDTO selectDiaryById(Long id);
 }

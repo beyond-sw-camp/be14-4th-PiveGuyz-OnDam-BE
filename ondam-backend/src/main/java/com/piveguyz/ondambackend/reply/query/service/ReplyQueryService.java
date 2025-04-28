@@ -8,9 +8,9 @@ public interface ReplyQueryService {
 
     List<ReplyQueryDTO> selectAllReply();
 
-    ReplyQueryDTO selectReplyById(Integer id);
+    ReplyQueryDTO selectReplyById(Long id);
 
-    List<ReplyQueryDTO> selectReplyByDiaryId(Integer diaryId);
+    List<ReplyQueryDTO> selectReplyByDiaryId(Long diaryId);
 
-    List<ReplyQueryDTO> selectReplyBySenderId(Integer senderId);
+    List<ReplyQueryDTO> selectReplyBySenderId(Long senderId);
 }

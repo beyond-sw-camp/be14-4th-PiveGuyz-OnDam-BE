@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 
 @Data
 public class ReplyQueryDTO {
-    private Integer id;
+    private Long id;
     private String title;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime deletedAt;
     private String isBlinded;
-    private Integer diaryRecordId;
-    private Integer senderId;
-    private Integer receiverId;
+    private Long diaryRecordId;
+    private Long senderId;
+    private Long receiverId;
 }

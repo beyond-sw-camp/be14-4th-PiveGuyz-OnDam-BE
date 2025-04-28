@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "title", nullable = false)
     private String title;
     @Column(name = "content", nullable = false)
@@ -27,9 +27,9 @@ public class Reply {
     @Column(name = "is_blinded", nullable = false)
     private String isBlinded = "N";
     @Column(name = "diary_record_id", nullable = false)
-    private Integer diaryRecordId;
+    private Long diaryRecordId;
     @Column(name = "sender_id", nullable = false)
-    private Integer senderId;
+    private Long senderId;
     @Column(name = "receiver_id", nullable = false)
-    private Integer receiverId;
+    private Long receiverId;
 }

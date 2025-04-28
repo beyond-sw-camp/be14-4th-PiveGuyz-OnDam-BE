@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Diary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "title", nullable = false)
     private String title;
     @Column(name = "content", nullable = false)
@@ -27,5 +27,5 @@ public class Diary {
     @Column(name = "is_blinded", nullable = false)
     private String isBlinded = "N";
     @Column(name = "member_id", nullable = false)
-    private Integer memberId;
+    private Long memberId;
 }

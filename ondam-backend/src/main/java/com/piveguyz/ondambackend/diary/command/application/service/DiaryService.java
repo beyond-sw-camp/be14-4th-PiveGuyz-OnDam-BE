@@ -42,7 +42,7 @@ public class DiaryService {
         }
     }
 
-    public boolean deleteDiary(int id) {
+    public boolean deleteDiary(Long id) {
         DiaryQueryDTO diaryQueryDTO = diaryQueryService.selectDiaryById(id);
         Diary diary = new Diary();
         diary.setId(diaryQueryDTO.getId());
@@ -51,6 +51,25 @@ public class DiaryService {
         diary.setCreatedAt(diaryQueryDTO.getCreatedAt());
         diary.setDeletedAt(LocalDateTime.now());
         diary.setIsBlinded(diaryQueryDTO.getIsBlinded());
+        diary.setMemberId(diaryQueryDTO.getMemberId());
+
+        try {
+            diaryRepository.save(diary);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean blindDiary(Long id){
+        DiaryQueryDTO diaryQueryDTO = diaryQueryService.selectDiaryById(id);
+        Diary diary = new Diary();
+        diary.setId(diaryQueryDTO.getId());
+        diary.setTitle(diaryQueryDTO.getTitle());
+        diary.setContent(diaryQueryDTO.getContent());
+        diary.setCreatedAt(diaryQueryDTO.getCreatedAt());
+        diary.setDeletedAt(diaryQueryDTO.getDeletedAt());
+        diary.setIsBlinded("Y");
         diary.setMemberId(diaryQueryDTO.getMemberId());
 
         try {

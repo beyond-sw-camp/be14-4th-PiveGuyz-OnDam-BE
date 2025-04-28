@@ -27,19 +27,19 @@ public class ReplyQueryController {
     }
 
     @GetMapping("/findReplyById")
-    public ReplyQueryDTO findReplyById(@RequestParam("id") Integer id) {
+    public ReplyQueryDTO findReplyById(@RequestParam("id") Long id) {
         ReplyQueryDTO replyQueryDTO = replyQueryService.selectReplyById(id);
         return replyQueryDTO;
     }
 
     @GetMapping("/findReplyByDiaryId")
-    public List<ReplyQueryDTO> findReplyByDiaryId(@RequestParam Integer diaryId) {
+    public List<ReplyQueryDTO> findReplyByDiaryId(@RequestParam Long diaryId) {
         List<ReplyQueryDTO> replyQueryDTOList = replyQueryService.selectReplyByDiaryId(diaryId);
         return replyQueryDTOList;
     }
 
     @GetMapping("/findReplyBySenderId")
-    public List<ReplyQueryDTO> findReplyBySenderId(@RequestParam Integer senderId) {
+    public List<ReplyQueryDTO> findReplyBySenderId(@RequestParam Long senderId) {
         List<ReplyQueryDTO> replyQueryDTOList = replyQueryService.selectReplyBySenderId(senderId);
         return replyQueryDTOList;
     }
