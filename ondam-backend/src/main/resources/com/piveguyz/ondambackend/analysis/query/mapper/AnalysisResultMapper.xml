@@ -23,8 +23,10 @@
         <association property="effectiveStatement"
                      javaType="com.piveguyz.ondambackend.analysis.query.dto.EffectiveStatementDTO">
             <id property="id" column="id"/>
-            <result property="content" column="content"/>
-            <result property="result" column="result_effective"/>
+            <result property="content" column="es_content"/>
+            <result property="response" column="es_response"/>
+            <result property="reason" column="es_reason"/>
+            <result property="result" column="es_result"/>
         </association>
 
         <association property="shortenedCounsel"
@@ -33,28 +35,34 @@
             <result property="emotionalChange" column="emotional_change"/>
             <result property="cognitive" column="cognitive"/>
             <result property="behavioral" column="behavioral"/>
-            <result property="response" column="response_shortened"/>
+            <result property="response" column="sc_response"/>
             <result property="recommendedDirection" column="recommended_direction"/>
         </association>
     </resultMap>
 
     <select id="selectAnalysisResult" resultMap="AnalysisResultMap">
         SELECT a.id,
+
                ts.period,
                ts.place,
                ts.situation,
                ts.reason,
                ts.flow,
                ts.determination,
+
+               e.name AS emotion,
                ea.evidence,
-               e.name      AS emotion,
-               ea.reason   AS reason_emotion,
-               es.content,
-               es.result   AS result_effective,
+               ea.reason,
+
+               es.content AS es_content,
+               es.response AS es_response,
+               es.reason AS es_reason,
+               es.result AS es_result,
+
                sc.emotional_change,
                sc.cognitive,
                sc.behavioral,
-               sc.response AS response_shortened,
+               sc.response AS sc_response,
                sc.recommended_direction
         FROM analysis a
    LEFT JOIN trouble_summary ts ON a.id = ts.analysis_id
@@ -67,9 +75,9 @@
 
     <select id="selectEmotionAnalysisList" resultType="com.piveguyz.ondambackend.analysis.query.dto.EmotionAnalysisDTO">
         SELECT ea.id,
-               e.name    AS emotion,
+               e.name AS emotion,
                ea.evidence,
-               ea.reason AS reason_emotion
+               ea.reason
         FROM emotion_analysis ea
         JOIN emotion e ON ea.emotion_id = e.id
        WHERE ea.analysis_id = #{analysisId}

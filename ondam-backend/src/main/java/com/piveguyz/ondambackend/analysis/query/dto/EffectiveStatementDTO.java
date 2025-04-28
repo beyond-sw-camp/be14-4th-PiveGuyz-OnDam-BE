@@ -13,15 +13,15 @@ import java.util.List;
 public class EffectiveStatementDTO {
     private Long id;
     private String content;
-    private List<String> response;
-    private List<String> reason;
+    private String response;
+    private String reason;
     private String result;
 
     @Builder
     public EffectiveStatementDTO(Long id,
                                  String content,
-                                 List<String> response,
-                                 List<String> reason,
+                                 String response,
+                                 String reason,
                                  String result) {
         this.id = id;
         this.content = content;
