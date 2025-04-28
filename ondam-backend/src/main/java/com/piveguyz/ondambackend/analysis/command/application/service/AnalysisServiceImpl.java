@@ -80,7 +80,14 @@ public class AnalysisServiceImpl implements AnalysisService {
                                  "recommended_direction": "..."
                                }
                              }
-            \s""";
+            \s
+            - 만약 상담 대화가 아닌 이상한 내용(예: 광고, 의미 없는 문장 등)이 감지되면, 다음과 같은 JSON만 응답하세요:
+                ```json
+                {
+                  "error": "잘못된 입력입니다. 정상적인 상담 대화 내용으로 다시 요청해 주세요."
+                }
+                ```
+            """;
 
     // DB 테스트용 json (API 사용 X)
     private static final String dbTestJson = """
@@ -197,8 +204,17 @@ public class AnalysisServiceImpl implements AnalysisService {
 
             Map<String, Object> resultMap = objectMapper.readValue(jsonString, new TypeReference<>() {
             });
-            saveAnalysis(resultMap, chatCompletionDto.getCounselId());
 
+            // 만약 error 필드가 있다면 DB 저장 X
+            if (resultMap.containsKey("error")) {
+                String errorMessage = (String) resultMap.get("error");
+                log.error("잘못된 입력 감지 : {}", errorMessage);
+                throw new IllegalArgumentException("잘못된 입력" + errorMessage);
+            } else saveAnalysis(resultMap, chatCompletionDto.getCounselId());
+
+        } catch (IllegalArgumentException e) {
+            // 잘못된 입력은 DB 저장 없이 예외만 던짐
+            throw e;
         } catch (Exception e) {
             log.error("ChatGPT 호출 또는 파싱 실패", e);
             throw new RuntimeException("ChatGPT 요청 실패", e);
