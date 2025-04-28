@@ -37,6 +37,13 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // 데이터값들의 변환을 위한 modelmapper 사용
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation 'org.modelmapper:modelmapper:3.2.0'
+
+    // 회원 가입 도중 비밀번호 암호화 시점에 추가
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
