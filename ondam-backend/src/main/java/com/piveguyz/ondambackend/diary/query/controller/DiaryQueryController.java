@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/diary")
+@RequestMapping("/api/v1/diary")
 public class DiaryQueryController {
     private DiaryQueryService diaryQueryService;
 
