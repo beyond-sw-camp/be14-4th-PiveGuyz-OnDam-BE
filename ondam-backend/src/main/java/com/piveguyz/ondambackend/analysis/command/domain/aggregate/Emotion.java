@@ -23,4 +23,9 @@ public class Emotion {
 
     @Column(name = "emotion_category_id", nullable = false)
     private Long emotionCategoryId;
+
+    public void update(String name, Long emotionCategoryId) {
+        this.name = name;
+        this.emotionCategoryId = emotionCategoryId;
+    }
 }
