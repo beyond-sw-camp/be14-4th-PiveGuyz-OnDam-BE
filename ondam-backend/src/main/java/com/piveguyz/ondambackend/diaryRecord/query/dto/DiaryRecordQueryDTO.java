@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class DiaryRecordQueryDTO {
     private Long id;
-    private Integer diaryId;
-    private Integer senderId;
-    private Integer receiverId;
+    private Long diaryId;
+    private Long senderId;
+    private Long receiverId;
     private String isExpired;
 }
