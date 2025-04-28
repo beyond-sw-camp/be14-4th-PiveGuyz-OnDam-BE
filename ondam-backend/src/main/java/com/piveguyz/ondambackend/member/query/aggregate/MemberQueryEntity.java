@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Data
 @Table(name="member")
-public class MemberEntity {
+public class MemberQueryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // autoincrement
