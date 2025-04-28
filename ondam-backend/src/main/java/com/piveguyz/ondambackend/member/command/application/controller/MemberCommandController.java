@@ -11,9 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/v1/member")
 @Slf4j
 public class MemberCommandController {
     private MemberService memberService;
@@ -26,7 +28,7 @@ public class MemberCommandController {
         this.modelMapper = modelMapper;
     }
 
-    @PostMapping("members")
+    @PostMapping("regist")
     public ResponseEntity<String> registMember(@RequestBody RequestRegistMembersVO newMember) {
         MemberDTO memberDTO = modelMapper.map(newMember, MemberDTO.class);
 
