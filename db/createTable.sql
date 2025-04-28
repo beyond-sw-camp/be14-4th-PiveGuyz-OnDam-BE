@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `trouble_summary`;
+DROP TABLE IF EXISTS `effective_statement`;
 DROP TABLE IF EXISTS `shortened_counsel`;
 DROP TABLE IF EXISTS `emotion_analysis`;
 DROP TABLE IF EXISTS `emotion`;
@@ -303,45 +305,76 @@ VALUES
 
 CREATE TABLE `analysis` (
                             `id`	BIGINT	NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                            `content`	LONGTEXT	NOT NULL,
-                            `emotion_score`	INT	NOT NULL,
-                            `counsel_object`	VARCHAR(255)	NULL,
-                            `shortened_content`	VARCHAR(255)	NULL,
                             `counsel_id`	BIGINT	NOT NULL,
                             FOREIGN KEY(`counsel_id`) REFERENCES `counsel`(`id`)
 );
 
 INSERT INTO `analysis` (
-    `content`,
-    `emotion_score`,
-    `counsel_object`,
-    `shortened_content`,
     `counsel_id`
 )
-VALUES (
-           '내담자는 직장에서 상사와의 반복적인 갈등으로 인해 극심한 정서적 스트레스를 호소하고 있음. 수면장애와 식욕저하 등 신체적 증상까지 나타나며, 외부와 감정을 나누지 않고 혼자 감내하는 경향이 있음. 상담자는 내담자의 감정을 수용하며, 감정 표현과 스트레스 관리의 중요성을 강조함. 전반적으로 심리적 피로도가 높은 상태로 보이며, 중장기적 상담 개입과 더불어 구체적인 스트레스 해소 방안이 요구됨.',
-           3,
-           '직장 내 대인관계 및 감정 억제',
-           '상사와의 갈등으로 인한 심리적 스트레스와 무기력 호소',
-           1
-       ),
-       (
-           '내담자는 최근 무기력감과 대인 기피 증상을 보이고 있으며, 일상적인 즐거움 상실과 신체적 피로(불면, 식욕 저하)를 호소함. 사회적 지지 부족과 감정 표현의 어려움이 주요 이슈로 보임.',
-           2,
-           '우울감, 사회적 고립, 감정 표현의 어려움',
-           '무기력, 대인기피, 감정 표현 어려움',
-           2
-       ),
-       (
-           '내담자는 가족, 특히 부모와의 진로에 대한 의견 차이로 인한 갈등을 겪고 있으며, 의사소통의 단절과 정서적 외로움을 느끼고 있음. 감정 표현의 어려움과 지지 체계 부족이 주요 이슈로 보임.',
-           3,
-           '가족 갈등, 진로 스트레스, 정서적 고립',
-           '가족과의 진로 갈등, 대화 단절, 외로움',
-           3
-       );
+VALUES (1),(2),(3);
 
 # ========================== 분석 테이블
 
+CREATE TABLE `effective_statement` (
+                                       `id`	BIGINT	NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                       `content`	TEXT	NOT NULL,
+                                       `reason`	TEXT	NOT NULL,
+                                       `response`	TEXT	NOT NULL,
+                                       `result`	TEXT	NOT NULL,
+                                       `analysis_id`	BIGINT	NOT NULL,
+                                       FOREIGN KEY (`analysis_id`) REFERENCES `analysis`(`id`)
+);
+
+INSERT INTO `effective_statement` (`content`, `reason`, `response`, `result`, `analysis_id`)
+VALUES (
+           '마음이 따라오지 않을 땐, 그 마음 그대로 인정해주는 게 시작일 수 있어요.',
+           '[
+               "상대방의 마음을 진실하게 인정하는 것은 존중과 위로가 되어 상대방의 심리적 안정에 도움이 될 수 있음",
+               "자신의 감정을 숨기지 않고 솔직히 표현하도록 유도하여 속마음을 털어놓을 수 있게 돕는 역할을 함",
+               "감정을 거부하지 않고 수용함으로써 내담자가 스스로에 대해 자각하고 받아들일 수 있도록 도와줄 수 있음"
+           ]',
+           '[
+               "그런가요… 제가 너무 나약한 건 아닌가요?",
+               "음… 그렇게 생각해본 적은 없어요."
+           ]',
+           '내담자의 부정적인 감정을 거부하지 않고 수용함으로써 내담자가 처한 상황을 원인과 함께 다시 생각해보게 하고 긍정적인 변화를 이끌어내는 역할을 함',
+           1
+       );
+
+# ========================== 효과적 발화 테이블
+
+CREATE TABLE `trouble_summary` (
+                                   `id`	BIGINT	NOT NULL	PRIMARY KEY AUTO_INCREMENT,
+                                   `period`	VARCHAR(255)	NOT NULL,
+                                   `place`	VARCHAR(255)	NOT NULL,
+                                   `situation`	VARCHAR(255)	NOT NULL,
+                                   `reason`	VARCHAR(255)	NOT NULL,
+                                   `flow`	VARCHAR(255)	NOT NULL,
+                                   `determination`	VARCHAR(255)	NOT NULL,
+                                   `analysis_id`	BIGINT	NOT NULL,
+                                   FOREIGN KEY (`analysis_id`) REFERENCES `analysis`(`id`)
+);
+
+INSERT INTO `trouble_summary` (
+    `period`,
+    `place`,
+    `situation`,
+    `reason`,
+    `flow`,
+    `determination`,
+    `analysis_id`
+) VALUES (
+             '최근 몇 주 간',
+             '직장 내',
+             '상사의 반복적인 질책과 무시로 인한 갈등 상황',
+             '노력과 결과를 인정받지 못하고 억울함과 무기력을 느낀 것',
+             '보고서 제출 후 상사의 부당한 질책 → 억울함과 무기력감 → 감정을 억누르고 사과함 → 지속적 긴장 상태 → 수면장애와 식욕저하 발생 → 사회적 지지 부족',
+             '심리적 스트레스가 누적된 상태이며, 감정 표현과 스트레스 해소 방법의 필요성이 강조됨',
+             1
+         );
+
+# ========================== 고민 요약 테이블
 
 CREATE TABLE `emotion_category` (
                                     `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -431,28 +464,29 @@ CREATE TABLE `emotion_analysis` (
                                     FOREIGN KEY(`emotion_id`) REFERENCES `emotion`(`id`)
 );
 
-INSERT INTO `emotion_analysis` (`evidence`, `reason`, `count`, `analysis_id`, `emotion_id`) VALUES
-                                                                                                (
-                                                                                                    '내담자는 직장에서 상사와의 반복적인 갈등으로 인해 극심한 정서적 스트레스를 호소하고 있음. 수면장애와 식욕저하 등 신체적 증상까지 나타나며, 외부와 감정을 나누지 않고 혼자 감내하는 경향이 있음. 상담자는 내담자의 감정을 수용하며, 감정 표현과 스트레스 관리의 중요성을 강조함. 전반적으로 심리적 피로도가 높은 상태로 보이며, 중장기적 상담 개입과 더불어 구체적인 스트레스 해소 방안이 요구됨.',
-                                                                                                    '직장 내 대인관계 및 감정 억제',
-                                                                                                    1,
-                                                                                                    1,  -- analysis_id
-                                                                                                    7   -- emotion_id (무기력)
-                                                                                                ),
-                                                                                                (
-                                                                                                    '잠도 자꾸 깨고 식욕도 없어요. 배가 고픈데 먹고 싶지가 않아요.',
-                                                                                                    '신체적 피로와 의욕 저하가 지속되고 있으며, 일상 활동 유지가 어려움.',
-                                                                                                    2,
-                                                                                                    2,
-                                                                                                    11 -- 무기력 (부정적 감정 카테고리)
-                                                                                                ),
-                                                                                                (
-                                                                                                    '그냥 집에만 있고 싶고 사람 만나는 것도 피하게 돼요.',
-                                                                                                    '사회적 접촉을 회피하며 고립감을 표현함.',
-                                                                                                    1,
-                                                                                                    3,
-                                                                                                    26 -- 고립감 (대인관계 감정 카테고리)
-                                                                                                );
+INSERT INTO `emotion_analysis` (`evidence`, `reason`, `count`, `analysis_id`, `emotion_id`)
+VALUES
+    (
+        '내담자는 직장에서 상사와의 반복적인 갈등으로 인해 극심한 정서적 스트레스를 호소하고 있음. 수면장애와 식욕저하 등 신체적 증상까지 나타나며, 외부와 감정을 나누지 않고 혼자 감내하는 경향이 있음. 상담자는 내담자의 감정을 수용하며, 감정 표현과 스트레스 관리의 중요성을 강조함. 전반적으로 심리적 피로도가 높은 상태로 보이며, 중장기적 상담 개입과 더불어 구체적인 스트레스 해소 방안이 요구됨.',
+        '직장 내 대인관계 및 감정 억제',
+        1,
+        1,  -- analysis_id
+        7   -- emotion_id (무기력)
+    ),
+    (
+        '잠도 자꾸 깨고 식욕도 없어요. 배가 고픈데 먹고 싶지가 않아요.',
+        '신체적 피로와 의욕 저하가 지속되고 있으며, 일상 활동 유지가 어려움.',
+        2,
+        2,
+        11 -- 무기력 (부정적 감정 카테고리)
+    ),
+    (
+        '그냥 집에만 있고 싶고 사람 만나는 것도 피하게 돼요.',
+        '사회적 접촉을 회피하며 고립감을 표현함.',
+        1,
+        3,
+        26 -- 고립감 (대인관계 감정 카테고리)
+    );
 ;
 # ========================== 분석 감정별 정보 테이블
 
