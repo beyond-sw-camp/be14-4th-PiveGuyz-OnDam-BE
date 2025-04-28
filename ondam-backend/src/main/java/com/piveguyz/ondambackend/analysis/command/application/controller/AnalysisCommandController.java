@@ -21,7 +21,7 @@ public class AnalysisCommandController {
     }
 
     @PostMapping("/gpt/prompt")
-    public ResponseEntity<Map<String, Object>> selectPrompt(@RequestBody ChatCompletionDTO chatCompletionDto) {
+    public ResponseEntity<Map<String, Object>> registGPTResponse(@RequestBody ChatCompletionDTO chatCompletionDto) {
         log.info("chatCompletionDto : " + chatCompletionDto.toString());
 
         if (chatCompletionDto.getMessages() == null || chatCompletionDto.getMessages().isEmpty()) {
