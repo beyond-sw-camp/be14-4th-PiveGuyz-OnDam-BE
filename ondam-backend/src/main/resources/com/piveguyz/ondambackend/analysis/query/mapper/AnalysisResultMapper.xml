@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.piveguyz.ondambackend.analysis.query.mapper.AnalysisResultMapper">
+
+    <resultMap type="com.piveguyz.ondambackend.analysis.query.dto.AnalysisResultDTO" id="AnalysisResultMap">
+
+        <id property="id" column="id"/>
+
+        <!-- 모든 분석 결과 조회 -->
+        <association property="troubleSummary"
+                     javaType="com.piveguyz.ondambackend.analysis.query.dto.TroubleSummaryDTO">
+            <id property="id" column="id"/>
+            <result property="period" column="period"/>
+            <result property="place" column="place"/>
+            <result property="situation" column="situation"/>
+            <result property="reason" column="reason"/>
+            <result property="flow" column="flow"/>
+            <result property="determination" column="determination"/>
+        </association>
+
+        <association property="effectiveStatement"
+                     javaType="com.piveguyz.ondambackend.analysis.query.dto.EffectiveStatementDTO">
+            <id property="id" column="id"/>
+            <result property="content" column="content"/>
+            <result property="result" column="result_effective"/>
+        </association>
+
+        <association property="shortenedCounsel"
+                     javaType="com.piveguyz.ondambackend.analysis.query.dto.ShortenedCounselDTO">
+            <id property="id" column="id"/>
+            <result property="emotionalChange" column="emotional_change"/>
+            <result property="cognitive" column="cognitive"/>
+            <result property="behavioral" column="behavioral"/>
+            <result property="response" column="response_shortened"/>
+            <result property="recommendedDirection" column="recommended_direction"/>
+        </association>
+
+        <collection property="emotionAnalysisList"
+                    ofType="com.piveguyz.ondambackend.analysis.query.dto.EmotionAnalysisDTO">
+            <id property="id" column="id"/>
+            <result property="emotion" column="emotion"/>
+            <result property="evidence" column="evidence"/>
+            <result property="reason" column="reason_emotion"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectAnalysisResult" resultMap="AnalysisResultMap">
+        SELECT
+               a.id,
+               ts.period,
+               ts.place,
+               ts.situation,
+               ts.reason,
+               ts.flow,
+               ts.determination,
+               ea.evidence,
+               e.name AS emotion,
+               ea.reason AS reason_emotion,
+               es.content,
+               es.result AS result_effective,
+               sc.emotional_change,
+               sc.cognitive,
+               sc.behavioral,
+               sc.response AS response_shortened,
+               sc.recommended_direction
+             FROM analysis a
+        LEFT JOIN trouble_summary ts ON a.id = ts.analysis_id
+        LEFT JOIN emotion_analysis ea ON a.id = ea.analysis_id
+        LEFT JOIN emotion e ON ea.emotion_id = e.id
+        LEFT JOIN effective_statement es ON a.id = es.analysis_id
+        LEFT JOIN shortened_counsel sc ON a.id = sc.analysis_id
+            WHERE a.counsel_id = #{counselId}
+    </select>
+
+</mapper>

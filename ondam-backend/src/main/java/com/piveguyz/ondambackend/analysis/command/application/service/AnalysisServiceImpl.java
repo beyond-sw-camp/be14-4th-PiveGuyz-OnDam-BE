@@ -183,6 +183,7 @@ public class AnalysisServiceImpl implements AnalysisService {
             Map<String, Object> message = (Map<String, Object>) ((Map<String, Object>) ((List<?>) gptResponse.get("choices")).get(0)).get("message");
             String jsonString = (String) message.get("content");
 
+            log.info("gpt 응답 : " + jsonString);
 //            String jsonString = dbTestJson;
 
             Map<String, Object> resultMap = objectMapper.readValue(jsonString, new TypeReference<>() {
