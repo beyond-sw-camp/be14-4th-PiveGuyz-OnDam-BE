@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.piveguyz.ondambackend.reply.query.mapper.ReplyMapper">
+    <resultMap id="ReplyResultMap" type="com.piveguyz.ondambackend.reply.query.dto.ReplyQueryDTO">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="deleted_at" property="deletedAt"/>
+        <result column="is_blinded" property="isBlinded"/>
+        <result column="diary_record_id" property="diaryRecordId"/>
+        <result column="sender_id" property="senderId"/>
+        <result column="receiver_id" property="receiverId"/>
+    </resultMap>
+
+    <select id="findAllReply" resultMap="ReplyResultMap">
+        SELECT
+            id,
+            title,
+            content,
+            created_at,
+            deleted_at,
+            is_blinded,
+            diary_record_id,
+            sender_id,
+            receiver_id
+        FROM reply
+        ORDER BY created_at DESC;
+    </select>
+
+    <select id="findReplyById" resultMap="ReplyResultMap">
+        SELECT
+            id,
+            title,
+            content,
+            created_at,
+            deleted_at,
+            is_blinded,
+            diary_record_id,
+            sender_id,
+            receiver_id
+        FROM reply
+        WHERE id = #{id}
+        ORDER BY created_at DESC;
+    </select>
+
+    <select id="findReplyByDiaryId" resultMap="ReplyResultMap">
+        SELECT
+            reply.id,
+            title,
+            content,
+            created_at,
+            deleted_at,
+            is_blinded,
+            reply.diary_record_id,
+            reply.sender_id,
+            reply.receiver_id,
+            diary_record.diary_id
+        FROM reply JOIN diary_record ON reply.diary_record_id = diary_record.id
+        WHERE diary_record.diary_id = #{diaryId}
+        ORDER BY created_at DESC;
+    </select>
+
+    <select id="findReplyBySenderId" resultMap="ReplyResultMap">
+        SELECT
+            id,
+            title,
+            content,
+            created_at,
+            deleted_at,
+            is_blinded,
+            diary_record_id,
+            sender_id,
+            receiver_id
+        FROM reply
+        WHERE sender_id = #{senderId}
+        ORDER BY created_at DESC;
+    </select>
+</mapper>
