@@ -151,6 +151,3 @@ db_schema.sql
 
 # intellij
 *.idea
-
-src/main/java/com/piveguyz/ondambackend/config/
-!src/main/java/com/piveguyz/ondambackend/config/WebConfig.java
