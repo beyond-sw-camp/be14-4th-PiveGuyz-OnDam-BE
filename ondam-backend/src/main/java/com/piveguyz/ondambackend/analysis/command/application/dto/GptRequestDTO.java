@@ -10,16 +10,13 @@ import java.util.List;
 @ToString
 @Getter
 @NoArgsConstructor
-public class ChatCompletionDTO {
+public class GptRequestDTO {
     private String model;
     private List<ChatRequestMsgDTO> messages;
 
-    private Long counselId;
-
     @Builder
-    public ChatCompletionDTO(String model, List<ChatRequestMsgDTO> messages, Long counselId) {
+    GptRequestDTO(String model, List<ChatRequestMsgDTO> messages) {
         this.model = model;
         this.messages = messages;
-        this.counselId = counselId;
     }
 }

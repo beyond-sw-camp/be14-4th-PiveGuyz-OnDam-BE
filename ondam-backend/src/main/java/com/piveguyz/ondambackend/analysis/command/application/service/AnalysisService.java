@@ -4,5 +4,5 @@ import java.util.Map;
 
 public interface AnalysisService {
 
-    Map<String, Object> askGpt(ChatCompletionDTO chatCompletionDto);
+    void askGpt(ChatCompletionDTO chatCompletionDto);
 }

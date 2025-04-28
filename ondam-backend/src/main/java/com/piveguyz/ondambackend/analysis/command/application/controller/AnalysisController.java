@@ -28,8 +28,9 @@ public class AnalysisController {
             return new ResponseEntity<>(Map.of("error", "User message is required"), HttpStatus.BAD_REQUEST);
         }
 
-        Map<String, Object> result = analysisService.askGpt(chatCompletionDto);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        analysisService.askGpt(chatCompletionDto);
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of("success", "true"));
     }
+
 
 }
