@@ -1,11 +1,7 @@
 package com.piveguyz.ondambackend.diaryRecord.command.application.service;
 
-import com.piveguyz.ondambackend.diary.command.application.dto.DiaryDTO;
-import com.piveguyz.ondambackend.diary.command.domain.aggregate.Diary;
-import com.piveguyz.ondambackend.diary.command.domain.repository.DiaryRepository;
 import com.piveguyz.ondambackend.diary.query.dto.DiaryQueryDTO;
 import com.piveguyz.ondambackend.diary.query.service.DiaryQueryService;
-import com.piveguyz.ondambackend.diaryRecord.command.application.dto.DiaryRecordDTO;
 import com.piveguyz.ondambackend.diaryRecord.command.domain.aggregate.DiaryRecord;
 import com.piveguyz.ondambackend.diaryRecord.command.domain.repository.DiaryRecordRepository;
 import com.piveguyz.ondambackend.diaryRecord.query.dto.DiaryRecordQueryDTO;
