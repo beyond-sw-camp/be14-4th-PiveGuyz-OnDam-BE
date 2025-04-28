@@ -1,12 +1,11 @@
-package com.piveguyz.ondambackend.diary.command.application.dto;
+package com.piveguyz.ondambackend.diary.query.dto;
 
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Data
-public class DiaryDTO {
+public class DiaryQueryDTO {
     private Integer id;
     private String title;
     private String content;
