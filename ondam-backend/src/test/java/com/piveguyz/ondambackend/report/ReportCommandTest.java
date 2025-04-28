@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.piveguyz.ondambackend.diary.command.domain.aggregate.Diary;
+import com.piveguyz.ondambackend.diary.command.domain.repository.DiaryRepository;
+import com.piveguyz.ondambackend.reply.command.domain.aggregate.Reply;
+import com.piveguyz.ondambackend.reply.command.domain.repository.ReplyRepository;
 import com.piveguyz.ondambackend.report.command.application.dto.ReportDiaryCommandDTO;
 import com.piveguyz.ondambackend.report.command.application.dto.ReportReplyCommandDTO;
 import com.piveguyz.ondambackend.report.command.application.dto.ReportStatusUpdateCommandDTO;
@@ -17,10 +21,7 @@ import com.piveguyz.ondambackend.report.command.application.service.ReportComman
 import com.piveguyz.ondambackend.report.command.domain.aggregate.Report;
 import com.piveguyz.ondambackend.report.command.domain.aggregate.ReportStatus;
 import com.piveguyz.ondambackend.report.command.domain.repository.ReportRepository;
-import com.piveguyz.ondambackend.report.temp.aggregate.Diary;
-import com.piveguyz.ondambackend.report.temp.aggregate.Reply;
-import com.piveguyz.ondambackend.report.temp.repository.DiaryRepository;
-import com.piveguyz.ondambackend.report.temp.repository.ReplyRepository;
+
 
 @SpringBootTest
 @Transactional
@@ -32,11 +33,9 @@ public class ReportCommandTest {
 	@Autowired
 	private ReportRepository reportRepository;
 
-	// 추후 import 수정 필요
 	@Autowired
 	private DiaryRepository diaryRepository;
 
-	// 추후 import 수정 필요
 	@Autowired
 	private ReplyRepository replyRepository;
 
@@ -129,13 +128,13 @@ public class ReportCommandTest {
 	@DisplayName("신고 승인 후 일기 블라인드 처리")
 	void approveDiaryReportAndBlindTest() {
 
-		Diary diary = Diary.builder()
-			.title("테스트 일기 제목")
-			.content("테스트 일기 내용")
-			.isBlinded("N")
-			.memberId(1L)
-			.createdAt(LocalDateTime.now())
-			.build();
+		Diary diary = new Diary();
+		diary.setTitle("테스트 일기 제목");
+		diary.setContent("테스트 일기 내용");
+		diary.setIsBlinded("N");
+		diary.setMemberId(1L);
+		diary.setCreatedAt(LocalDateTime.now());
+
 		diaryRepository.save(diary);
 
 		Report report = new Report(1L, 2L, diary.getId(), null, 1L, "일기 신고 테스트");
@@ -161,15 +160,15 @@ public class ReportCommandTest {
 	@DisplayName("신고 승인 후 답장 블라인드 처리")
 	void approveReplyReportAndBlindTest() {
 
-		Reply reply = Reply.builder()
-			.title("테스트 답장 제목")
-			.content("테스트 답장 내용")
-			.createdAt(LocalDateTime.now())
-			.isBlinded("N")
-			.diaryRecordId(1)
-			.senderId(1L)
-			.receiverId(2L)
-			.build();
+		Reply reply = new Reply();
+		reply.setTitle("테스트 답장 제목");
+		reply.setContent("테스트 답장 내용");
+		reply.setCreatedAt(LocalDateTime.now());
+		reply.setIsBlinded("N");
+		reply.setDiaryRecordId(1L);
+		reply.setSenderId(1L);
+		reply.setReceiverId(2L);
+
 		replyRepository.save(reply);
 
 		Report report = new Report(1L, 2L, null, reply.getId(), 1L, "답장 신고 테스트");

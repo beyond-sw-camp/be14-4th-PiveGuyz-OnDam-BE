@@ -9,15 +9,18 @@ import lombok.*;
 @Getter
 @ToString
 @Builder
-@Table(name="analysis")
-// 분석 테이블
-public class Analysis {
+@Table(name = "emotion")
+public class Emotion {
+    // 감정
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "counsel_id", nullable = false)
-    private Long counselId;
+    @Column(name = "name", nullable = false)
+    private String name;
 
+    @Column(name = "emotion_category_id", nullable = false)
+    private Long emotionCategoryId;
 }
