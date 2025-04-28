@@ -13,13 +13,13 @@ import lombok.*;
 public class DiaryRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "diary_id", nullable = false)
-    private Integer diaryId;
+    private Long diaryId;
     @Column(name = "sender_id", nullable = false)
-    private Integer senderId;
+    private Long senderId;
     @Column(name = "receiver_id", nullable = false)
-    private Integer receiverId;
+    private Long receiverId;
     @Column(name = "is_expired", nullable = false)
     private String isExpired = "N";
 }

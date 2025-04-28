@@ -28,7 +28,7 @@ public class ReplyController {
     }
 
     @DeleteMapping("/deleteReply")
-    public ResponseEntity<String> deleteReply(@RequestParam int replyId) {
+    public ResponseEntity<String> deleteReply(@RequestParam Long replyId) {
         boolean result = replyService.deleteReply(replyId);
         if(result){
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("답장 삭제가 완료되었습니다.");

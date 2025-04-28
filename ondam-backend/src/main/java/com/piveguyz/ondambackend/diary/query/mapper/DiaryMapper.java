@@ -11,7 +11,7 @@ public interface DiaryMapper {
 
     List<DiaryQueryDTO> findActivatedDiary();
 
-    DiaryQueryDTO findDiaryById(Integer id);
+    DiaryQueryDTO findDiaryById(Long id);
 
-    List<DiaryQueryDTO> findDiaryByMemberId(Integer memberId);
+    List<DiaryQueryDTO> findDiaryByMemberId(Long memberId);
 }

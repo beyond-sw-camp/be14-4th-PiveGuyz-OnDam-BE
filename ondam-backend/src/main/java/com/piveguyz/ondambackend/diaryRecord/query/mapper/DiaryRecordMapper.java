@@ -9,9 +9,9 @@ import java.util.List;
 public interface DiaryRecordMapper {
     List<DiaryRecordQueryDTO> findAllDiaryRecord();
 
-    List<DiaryRecordQueryDTO> findDiaryRecordByDiaryId(Integer diaryId);
+    List<DiaryRecordQueryDTO> findDiaryRecordByDiaryId(Long diaryId);
 
-    List<DiaryRecordQueryDTO> findDiaryRecordByReceiverId(Integer receiverId);
+    List<DiaryRecordQueryDTO> findDiaryRecordByReceiverId(Long receiverId);
 
-    DiaryRecordQueryDTO findDiaryRecordByDiaryIdAndReceiverId(Integer diaryId, Integer receiverId);
+    DiaryRecordQueryDTO findDiaryRecordByDiaryIdAndReceiverId(Long diaryId, Long receiverId);
 }

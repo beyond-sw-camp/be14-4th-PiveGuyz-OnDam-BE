@@ -29,13 +29,13 @@ public class DiaryQueryServiceImpl implements DiaryQueryService {
     }
 
     @Override
-    public DiaryQueryDTO selectDiaryById(Integer id) {
+    public DiaryQueryDTO selectDiaryById(Long id) {
         DiaryQueryDTO diaryQueryDTO = diaryMapper.findDiaryById(id);
         return diaryQueryDTO;
     }
 
     @Override
-    public List<DiaryQueryDTO> selectDiaryByMemberId(Integer memberId) {
+    public List<DiaryQueryDTO> selectDiaryByMemberId(Long memberId) {
         List<DiaryQueryDTO> diaryQueryDTOList = diaryMapper.findDiaryByMemberId(memberId);
         return diaryQueryDTOList;
     }

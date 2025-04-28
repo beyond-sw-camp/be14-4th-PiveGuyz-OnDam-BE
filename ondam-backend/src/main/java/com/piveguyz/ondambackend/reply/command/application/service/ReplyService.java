@@ -46,9 +46,8 @@ public class ReplyService {
         }
     }
 
-    public boolean deleteReply(int replyId) {
+    public boolean deleteReply(Long replyId) {
         ReplyQueryDTO replyQueryDTO = replyQueryService.selectReplyById(replyId);
-        System.out.println(replyQueryDTO);
         Reply reply = new Reply();
         reply.setId(replyQueryDTO.getId());
         reply.setTitle(replyQueryDTO.getTitle());
@@ -56,6 +55,27 @@ public class ReplyService {
         reply.setCreatedAt(replyQueryDTO.getCreatedAt());
         reply.setDeletedAt(LocalDateTime.now());
         reply.setIsBlinded(replyQueryDTO.getIsBlinded());
+        reply.setDiaryRecordId(replyQueryDTO.getDiaryRecordId());
+        reply.setSenderId(replyQueryDTO.getSenderId());
+        reply.setReceiverId(replyQueryDTO.getReceiverId());
+
+        try {
+            replyRepository.save(reply);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean blindReply(Long replyId){
+        ReplyQueryDTO replyQueryDTO = replyQueryService.selectReplyById(replyId);
+        Reply reply = new Reply();
+        reply.setId(replyQueryDTO.getId());
+        reply.setTitle(replyQueryDTO.getTitle());
+        reply.setContent(replyQueryDTO.getContent());
+        reply.setCreatedAt(replyQueryDTO.getCreatedAt());
+        reply.setDeletedAt(replyQueryDTO.getDeletedAt());
+        reply.setIsBlinded("Y");
         reply.setDiaryRecordId(replyQueryDTO.getDiaryRecordId());
         reply.setSenderId(replyQueryDTO.getSenderId());
         reply.setReceiverId(replyQueryDTO.getReceiverId());

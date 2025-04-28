@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 
 @Data
 public class DiaryDTO {
-    private Integer id;
+    private Long id;
     private String title;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime deletedAt;
     private String isBlinded;
-    private Integer memberId;
+    private Long memberId;
 }

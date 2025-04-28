@@ -26,19 +26,19 @@ public class ReplyQueryServiceImpl implements ReplyQueryService {
     }
 
     @Override
-    public ReplyQueryDTO selectReplyById(Integer id) {
+    public ReplyQueryDTO selectReplyById(Long id) {
         ReplyQueryDTO replyQueryDTO = replyMapper.findReplyById(id);
         return replyQueryDTO;
     }
 
     @Override
-    public List<ReplyQueryDTO> selectReplyByDiaryId(Integer diaryId) {
+    public List<ReplyQueryDTO> selectReplyByDiaryId(Long diaryId) {
         List<ReplyQueryDTO> replyQueryDTOList = replyMapper.findReplyByDiaryId(diaryId);
         return replyQueryDTOList;
     }
 
     @Override
-    public List<ReplyQueryDTO> selectReplyBySenderId(Integer senderId) {
+    public List<ReplyQueryDTO> selectReplyBySenderId(Long senderId) {
         List<ReplyQueryDTO> replyQueryDTOList = replyMapper.findReplyBySenderId(senderId);
         return replyQueryDTOList;
     }

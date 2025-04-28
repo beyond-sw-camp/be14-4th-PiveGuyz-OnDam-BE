@@ -32,13 +32,13 @@ public class DiaryQueryController {
     }
 
     @GetMapping("findDiaryById")
-    public DiaryQueryDTO findDiaryById(@RequestParam("id") Integer id) {
+    public DiaryQueryDTO findDiaryById(@RequestParam("id") Long id) {
         DiaryQueryDTO diaryQueryDTO = diaryQueryService.selectDiaryById(id);
         return diaryQueryDTO;
     }
 
     @GetMapping("/findDiaryByMemberId")
-    public List<DiaryQueryDTO> findDiaryByMemberId(@RequestParam("memberId") Integer memberId) {
+    public List<DiaryQueryDTO> findDiaryByMemberId(@RequestParam("memberId") Long memberId) {
         List<DiaryQueryDTO> diaryQueryDTOList = diaryQueryService.selectDiaryByMemberId(memberId);
         return diaryQueryDTOList;
     }

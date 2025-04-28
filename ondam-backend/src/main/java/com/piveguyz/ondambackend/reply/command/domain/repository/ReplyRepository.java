@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReplyRepository extends JpaRepository<Reply, Integer> {
+public interface ReplyRepository extends JpaRepository<Reply, Long> {
     // 추가적인 메소드 구현이 필요하다면 여기에 추가
 
 }
