@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/member")
-public class MemberController {
+public class MemberQueryController {
     private MemberService memberService;
 
     @Autowired
-    public MemberController(MemberService memberService) {
+    public MemberQueryController(MemberService memberService) {
         this.memberService = memberService;
     }
 
