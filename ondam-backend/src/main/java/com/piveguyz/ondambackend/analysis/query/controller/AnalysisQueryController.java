@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("QueryAnalysisController")
+@RestController
 @RequestMapping("/api/v1/analysis")
 @Slf4j
-public class AnalysisController {
+public class AnalysisQueryController {
     private final AnalysisService analysisService;
 
     @Autowired
-    public AnalysisController(AnalysisService analysisService) {
+    public AnalysisQueryController(AnalysisService analysisService) {
         this.analysisService = analysisService;
     }
 

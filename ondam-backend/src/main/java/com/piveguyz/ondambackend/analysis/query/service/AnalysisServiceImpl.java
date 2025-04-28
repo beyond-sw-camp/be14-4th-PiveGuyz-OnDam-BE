@@ -1,9 +1,12 @@
 package com.piveguyz.ondambackend.analysis.query.service;
 
 import com.piveguyz.ondambackend.analysis.query.dto.AnalysisResultDTO;
+import com.piveguyz.ondambackend.analysis.query.dto.EmotionAnalysisDTO;
 import com.piveguyz.ondambackend.analysis.query.mapper.AnalysisResultMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("QueryAnalysisService")
 public class AnalysisServiceImpl implements AnalysisService {
@@ -16,7 +19,16 @@ public class AnalysisServiceImpl implements AnalysisService {
 
     @Override
     public AnalysisResultDTO getAnalysisResult(Long counselId) {
-        return analysisResultMapper.selectAnalysisResult(counselId);
+        AnalysisResultDTO result = analysisResultMapper.selectAnalysisResult(counselId);
+        List<EmotionAnalysisDTO> emotionList = analysisResultMapper.selectEmotionAnalysisList(result.getId());
+
+        return AnalysisResultDTO.builder()
+                .id(result.getId())
+                .troubleSummary(result.getTroubleSummary())
+                .effectiveStatement(result.getEffectiveStatement())
+                .shortenedCounsel(result.getShortenedCounsel())
+                .emotionAnalysisList(emotionList)
+                .build();
     }
 
 }

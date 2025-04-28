@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController("CommandAnalysisController")
+@RestController
 @RequestMapping("/api/v1/analysis")
 @Slf4j
-public class AnalysisController {
+public class AnalysisCommandController {
 
     private final AnalysisService analysisService;
 
-    public AnalysisController(AnalysisService analysisService) {
+    public AnalysisCommandController(AnalysisService analysisService) {
         this.analysisService = analysisService;
     }
 
@@ -29,6 +29,7 @@ public class AnalysisController {
         }
 
         analysisService.askGpt(chatCompletionDto);
+//        analysisService.testSaveAnalysis(4L);
         return ResponseEntity.status(HttpStatus.OK).body(Map.of("success", "true"));
     }
 

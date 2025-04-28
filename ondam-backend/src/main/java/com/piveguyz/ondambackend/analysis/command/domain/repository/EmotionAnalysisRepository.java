@@ -4,4 +4,5 @@ import com.piveguyz.ondambackend.analysis.command.domain.aggregate.EmotionAnalys
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmotionAnalysisRepository extends JpaRepository<EmotionAnalysis, Long> {
+    void deleteByAnalysisId(Long analysisId);
 }
