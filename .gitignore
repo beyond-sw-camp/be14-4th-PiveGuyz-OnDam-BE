@@ -147,7 +147,10 @@ replay_pid*
 application.yml
 applicaiton.properties
 
+db_schema.sql
+
 # intellij
 *.idea
 
-config
+src/main/java/com/piveguyz/ondambackend/config/
+!src/main/java/com/piveguyz/ondambackend/config/WebConfig.java
