@@ -7,6 +7,8 @@ import com.piveguyz.ondambackend.diary.command.domain.repository.DiaryRepository
 import com.piveguyz.ondambackend.diary.query.dto.DiaryQueryDTO;
 import com.piveguyz.ondambackend.diary.query.mapper.DiaryMapper;
 import com.piveguyz.ondambackend.diary.query.service.DiaryQueryService;
+import com.piveguyz.ondambackend.member.query.dto.MemberDTO;
+import com.piveguyz.ondambackend.member.query.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +19,24 @@ public class DiaryService {
     private final DiaryRepository diaryRepository;
     private final DiaryMapper diaryMapper;
     private final DiaryQueryService diaryQueryService;
+    private final MemberService memberQueryService;  // query Service
 
     @Autowired
-    public DiaryService(DiaryRepository diaryRepository, DiaryMapper diaryMapper, DiaryQueryService diaryQueryService) {
+    public DiaryService(DiaryRepository diaryRepository, DiaryMapper diaryMapper, DiaryQueryService diaryQueryService, MemberService memberQueryService) {
         this.diaryRepository = diaryRepository;
         this.diaryMapper = diaryMapper;
         this.diaryQueryService = diaryQueryService;
+        this.memberQueryService = memberQueryService;
     }
 
     public boolean writeDiary(DiaryDTO diaryDTO) {
+        Long writerId = diaryDTO.getMemberId();
+        MemberDTO memberDTO = memberQueryService.findMemberById(writerId);
+        Integer point = memberDTO.getPoint();
+        if(point < 10){
+            return false;   // point 10미만은 일기 작성 불가
+        }
+
         Diary diary = new Diary();
         diary.setTitle(diaryDTO.getTitle());
         diary.setContent(diaryDTO.getContent());
