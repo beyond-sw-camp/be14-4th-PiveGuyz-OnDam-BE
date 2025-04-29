@@ -1,4 +1,7 @@
 package com.piveguyz.ondambackend.member.command.application.service;
 
-public class MemberService {
+import com.piveguyz.ondambackend.member.command.application.dto.MemberDTO;
+
+public interface MemberService {
+    void registMember(MemberDTO memberDTO);
 }

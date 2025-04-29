@@ -20,4 +20,8 @@ public class EmotionCategory {
 
     @Column(name = "name")
     private String name;
+
+    public void updateName(String name) {
+        this.name = name;
+    }
 }

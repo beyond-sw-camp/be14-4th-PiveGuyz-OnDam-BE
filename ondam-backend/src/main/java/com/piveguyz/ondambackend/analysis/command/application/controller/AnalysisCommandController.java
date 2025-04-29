@@ -1,5 +1,6 @@
 package com.piveguyz.ondambackend.analysis.command.application.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.piveguyz.ondambackend.analysis.command.application.dto.ChatCompletionDTO;
 import com.piveguyz.ondambackend.analysis.command.application.service.AnalysisService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ public class AnalysisCommandController {
     }
 
     @PostMapping("/gpt/prompt")
-    public ResponseEntity<Map<String, Object>> selectPrompt(@RequestBody ChatCompletionDTO chatCompletionDto) {
+    public ResponseEntity<Map<String, Object>> registGPTResponse(@RequestBody ChatCompletionDTO chatCompletionDto) throws JsonProcessingException{
         log.info("chatCompletionDto : " + chatCompletionDto.toString());
 
         if (chatCompletionDto.getMessages() == null || chatCompletionDto.getMessages().isEmpty()) {
