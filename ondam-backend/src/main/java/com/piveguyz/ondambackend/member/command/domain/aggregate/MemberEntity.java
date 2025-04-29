@@ -1,13 +1,16 @@
 package com.piveguyz.ondambackend.member.command.domain.aggregate;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="member")
 public class MemberEntity {
 

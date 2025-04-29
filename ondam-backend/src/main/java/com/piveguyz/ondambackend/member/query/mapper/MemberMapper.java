@@ -1,15 +1,13 @@
 package com.piveguyz.ondambackend.member.query.mapper;
 
-import com.piveguyz.ondambackend.member.query.dto.MemberDTO;
+import com.piveguyz.ondambackend.member.query.dto.MemberQueryDTO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 @Mapper
 public interface MemberMapper {
-    @Select("SELECT * FROM member")
-    List<MemberDTO> findAllMembers();
+    List<MemberQueryDTO> findAllMembers(); // @Select 제거
 
+    MemberQueryDTO findMemberById(Long id);
 }

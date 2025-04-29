@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.piveguyz.ondambackend.diaryRecord.query.mapper.DiaryRecordMapper">
+    <resultMap id="DiaryRecordResultMap" type="com.piveguyz.ondambackend.diaryRecord.query.dto.DiaryRecordQueryDTO">
+        <id column="id" property="id"/>
+        <result column="diary_id" property="diaryId"/>
+        <result column="sender_id" property="senderId"/>
+        <result column="receiver_id" property="receiverId"/>
+        <result column="is_expired" property="isExpired"/>
+    </resultMap>
+
+    <select id="findAllDiaryRecord" resultMap="DiaryRecordResultMap">
+        SELECT
+            diary_record.id,
+            diary_record.diary_id,
+            diary_record.sender_id,
+            diary_record.receiver_id,
+            diary_record.is_expired
+        FROM diary_record JOIN diary ON diary_record.diary_id = diary.id
+        WHERE ISNULL(diary.deleted_at) AND diary.is_blinded = 'N'
+          AND diary_record.is_expired = 'N';
+    </select>
+
+    <select id="findDiaryRecordById" resultMap="DiaryRecordResultMap">
+        SELECT
+            diary_record.id,
+            diary_record.diary_id,
+            diary_record.sender_id,
+            diary_record.receiver_id,
+            diary_record.is_expired
+        FROM diary_record JOIN diary ON diary_record.diary_id = diary.id
+        WHERE ISNULL(diary.deleted_at) AND diary.is_blinded = 'N'
+          AND diary_record.is_expired = 'N'
+          AND diary_record.id = #{id};
+    </select>
+
+    <select id="findDiaryRecordByDiaryId" resultMap="DiaryRecordResultMap">
+        SELECT
+            diary_record.id,
+            diary_record.diary_id,
+            diary_record.sender_id,
+            diary_record.receiver_id,
+            diary_record.is_expired
+        FROM diary_record JOIN diary ON diary_record.diary_id = diary.id
+        WHERE ISNULL(diary.deleted_at) AND diary.is_blinded = 'N'
+          AND diary_record.is_expired = 'N'
+          AND diary_record.diary_id = #{diaryId};
+    </select>
+
+    <select id="findDiaryRecordByReceiverId" resultMap="DiaryRecordResultMap">
+        SELECT
+            diary_record.id,
+            diary_record.diary_id,
+            diary_record.sender_id,
+            diary_record.receiver_id,
+            diary_record.is_expired
+        FROM diary_record JOIN diary ON diary_record.diary_id = diary.id
+        WHERE ISNULL(diary.deleted_at) AND diary.is_blinded = 'N'
+          AND diary_record.is_expired = 'N'
+          AND diary_record.receiver_id = #{receiverId};
+    </select>
+
+    <select id="findDiaryRecordByDiaryIdAndReceiverId" resultMap="DiaryRecordResultMap">
+        SELECT
+            diary_record.id,
+            diary_record.diary_id,
+            diary_record.sender_id,
+            diary_record.receiver_id,
+            diary_record.is_expired
+        FROM diary_record JOIN diary ON diary_record.diary_id = diary.id
+        WHERE ISNULL(diary.deleted_at) AND diary.is_blinded = 'N'
+          AND diary_record.is_expired = 'N'
+          AND diary_record.diary_id = #{diaryId}
+          AND diary_record.receiver_id = #{receiverId};
+    </select>
+
+</mapper>

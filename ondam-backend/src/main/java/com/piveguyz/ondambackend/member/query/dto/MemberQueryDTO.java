@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class
-MemberDTO {
+MemberQueryDTO {
     private Long id;
     private String name;
     private String email;
@@ -14,6 +14,7 @@ MemberDTO {
     private String birthday;
     private LocalDateTime createdAt;
     private LocalDateTime deletedAt;
+    private String phone;
     private String profileImageUrl;
     private String address;
     private Integer point;
