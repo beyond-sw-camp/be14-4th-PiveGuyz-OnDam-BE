@@ -8,4 +8,5 @@ public interface MemberService {
 
     void deleteMember(Long id);
 
+    void changePassword(Long id, ChangePasswordDTO newPassword);
 }
