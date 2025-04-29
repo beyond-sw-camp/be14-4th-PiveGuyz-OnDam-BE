@@ -1,5 +1,6 @@
 package com.piveguyz.ondambackend.member.command.application.service;
 
+import com.piveguyz.ondambackend.member.command.application.dto.ChangePasswordDTO;
 import com.piveguyz.ondambackend.member.command.application.dto.MemberDTO;
 import com.piveguyz.ondambackend.member.command.domain.aggregate.MemberEntity;
 import com.piveguyz.ondambackend.member.command.domain.repository.MemberRepository;
@@ -27,6 +28,7 @@ public class MemberCommandServiceImpl implements MemberService {
         this.modelMapper = modelMapper;
 
     }
+
     // 회원가입
     @Override
     @Transactional
@@ -40,7 +42,7 @@ public class MemberCommandServiceImpl implements MemberService {
         registMember.setIsBanned("N");
         registMember.setIsDiaryBlocked("N");
 
-    memberRepository.save(registMember);
+        memberRepository.save(registMember);
     }
 
     //회원탈퇴
@@ -57,6 +59,26 @@ public class MemberCommandServiceImpl implements MemberService {
         member.setDeletedAt(new Date()); // java.util.Date 현재시간
         memberRepository.save(member);
     }
+        // 비밀번호 수정
+    @Override
+    @Transactional
+    public void changePassword(Long id, ChangePasswordDTO passwordDTO) {
+        MemberEntity member = memberRepository.findByIdAndDeletedAtIsNull(id)
+                .orElseThrow(() -> new RuntimeException("회원을 찾을 수 없습니다."));
 
+        if (!member.getPassword().equals(passwordDTO.getCurrentPassword())) {
+            throw new RuntimeException("현재 비밀번호가 일치하지 않습니다.");
+        }
+
+        if (!passwordDTO.getNewPassword().equals(passwordDTO.getNewPasswordCheck())) {
+            throw new RuntimeException("새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+        }
+
+        member.setPassword(passwordDTO.getNewPassword());
+        memberRepository.save(member);
     }
+
+   }
+
+
 
