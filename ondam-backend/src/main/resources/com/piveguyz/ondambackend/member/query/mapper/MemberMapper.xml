@@ -25,4 +25,10 @@
         SELECT *
         FROM member;
     </select>
+
+    <select id="findMemberById" parameterType="long" resultType="com.piveguyz.ondambackend.member.query.dto.MemberDTO">
+        SELECT * FROM member
+        WHERE id = #{id} AND deleted_at IS NULL
+    </select>
+
 </mapper>

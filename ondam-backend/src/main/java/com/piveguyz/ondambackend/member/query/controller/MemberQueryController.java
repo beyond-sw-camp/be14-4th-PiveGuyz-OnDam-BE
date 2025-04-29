@@ -36,5 +36,17 @@ public class MemberQueryController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
         }
     }
+
+    @GetMapping("/findMemberById") // ★ 추가
+    public ResponseEntity<MemberDTO> findMemberById(@RequestParam("id") Long id) {
+        MemberDTO memberDTO = memberService.findMemberById(id);
+        if (memberDTO != null) {
+            return ResponseEntity.ok(memberDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }
 

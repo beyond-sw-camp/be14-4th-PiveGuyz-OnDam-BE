@@ -33,4 +33,8 @@ public class MemberServiceImpl implements MemberService {
                                 memberDTO.getPassword().equals(password)
                 );
     }
+    @Override
+    public MemberDTO findMemberById(Long id) { // ★ 추가
+        return memberMapper.findMemberById(id);
+    }
 }

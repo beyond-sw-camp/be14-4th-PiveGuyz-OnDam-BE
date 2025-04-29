@@ -10,4 +10,6 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
     List<MemberDTO> findAllMembers(); // @Select 제거
+
+    MemberDTO findMemberById(Long id);
 }
