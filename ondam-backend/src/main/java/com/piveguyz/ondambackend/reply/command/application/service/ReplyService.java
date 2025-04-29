@@ -33,12 +33,8 @@ public class ReplyService {
     public boolean writeReply(ReplyDTO replyDTO) {
         Long diaryRecordId = replyDTO.getDiaryRecordId();
         DiaryRecordQueryDTO diaryRecordQueryDTO = diaryRecordQueryService.selectDiaryRecordById(diaryRecordId);
-        System.out.println("replyDTO = " + replyDTO);
-        System.out.println("diaryRecordId = " + diaryRecordId);
-        System.out.println("diaryRecordQueryDTO = " + diaryRecordQueryDTO);
         Long senderId = diaryRecordQueryDTO.getReceiverId();
         Long receiverId = diaryRecordQueryDTO.getSenderId();
-
 
         Reply reply = new Reply();
         reply.setTitle(replyDTO.getTitle());
@@ -52,6 +48,7 @@ public class ReplyService {
 
         try {
             replyRepository.save(reply);
+            memberService.plusPoint(senderId);      // 10점 추가
             return true;
         } catch (Exception e) {
             return false;

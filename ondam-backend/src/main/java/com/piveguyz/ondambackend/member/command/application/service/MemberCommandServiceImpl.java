@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -60,7 +62,7 @@ public class MemberCommandServiceImpl implements MemberService {
             throw new RuntimeException("이미 탈퇴한 회원입니다.");
         }
 
-        member.setDeletedAt(new Date()); // java.util.Date 현재시간
+        member.setDeletedAt(LocalDateTime.now()); // java.util.Date 현재시간
         memberRepository.save(member);
     }
         // 비밀번호 수정
@@ -89,9 +91,27 @@ public class MemberCommandServiceImpl implements MemberService {
         point += 10;
         memberQueryDTO.setPoint(point);
         MemberEntity member = new MemberEntity();
-        member = modelMapper.map(memberQueryDTO, MemberEntity.class);
+        member.setId(memberQueryDTO.getId());
+        member.setName(memberQueryDTO.getName());
+        member.setEmail(memberQueryDTO.getEmail());
+        member.setPassword(memberQueryDTO.getPassword());
+        member.setBirthday(memberQueryDTO.getBirthday());
+        LocalDateTime createdAt = memberQueryDTO.getCreatedAt();
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now(); // 기본값
+        }
+        member.setCreatedAt(createdAt);
+        member.setDeletedAt(memberQueryDTO.getDeletedAt());
+        member.setPhone(memberQueryDTO.getPhone());
+        member.setProfileImageUrl(memberQueryDTO.getProfileImageUrl());
+        member.setAddress(memberQueryDTO.getAddress());
+        member.setPoint(memberQueryDTO.getPoint());
+        member.setAuthority(memberQueryDTO.getAuthority());
+        member.setIsBanned(memberQueryDTO.getIsBanned());
+        member.setIsDiaryBlocked(memberQueryDTO.getIsDiaryBlocked());
         memberRepository.save(member);
     }
+
 
     // minus point
     public void minusPoint(Long id) {
@@ -100,7 +120,20 @@ public class MemberCommandServiceImpl implements MemberService {
         point -= 10;
         memberQueryDTO.setPoint(point);
         MemberEntity member = new MemberEntity();
-        member = modelMapper.map(memberQueryDTO, MemberEntity.class);
+        member.setId(memberQueryDTO.getId());
+        member.setName(memberQueryDTO.getName());
+        member.setEmail(memberQueryDTO.getEmail());
+        member.setPassword(memberQueryDTO.getPassword());
+        member.setBirthday(memberQueryDTO.getBirthday());
+        member.setCreatedAt(memberQueryDTO.getCreatedAt());
+        member.setDeletedAt(memberQueryDTO.getDeletedAt());
+        member.setPhone(memberQueryDTO.getPhone());
+        member.setProfileImageUrl(memberQueryDTO.getProfileImageUrl());
+        member.setAddress(memberQueryDTO.getAddress());
+        member.setPoint(memberQueryDTO.getPoint());
+        member.setAuthority(memberQueryDTO.getAuthority());
+        member.setIsBanned(memberQueryDTO.getIsBanned());
+        member.setIsDiaryBlocked(memberQueryDTO.getIsDiaryBlocked());
         memberRepository.save(member);
     }
 }
