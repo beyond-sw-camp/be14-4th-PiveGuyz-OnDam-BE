@@ -12,6 +12,7 @@
         <result column="birthday" property="birthday"/>
         <result column="created_at" property="createdAt"/>
         <result column="deleted_at" property="deletedAt"/>
+        <result column="phone" property="phone"/>
         <result column="profile_image_url" property="profileImageUrl"/>
         <result column="address" property="address"/>
         <result column="point" property="point"/>
@@ -22,6 +23,6 @@
 
     <select id="findAllMembers" resultMap="MemberResultMap">
         SELECT *
-        FROM member
+        FROM member;
     </select>
 </mapper>

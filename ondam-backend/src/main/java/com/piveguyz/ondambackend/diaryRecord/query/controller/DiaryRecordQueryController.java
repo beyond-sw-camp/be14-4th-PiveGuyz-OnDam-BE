@@ -27,6 +27,12 @@ public class DiaryRecordQueryController {
         return diaryRecordQueryDTOList;
     }
 
+    @GetMapping("findDiaryRecordById")
+    public DiaryRecordQueryDTO findDiaryRecordById(@RequestParam("id") Long id) {
+        DiaryRecordQueryDTO diaryRecordQueryDTO = diaryRecordQueryService.selectDiaryRecordById(id);
+        return diaryRecordQueryDTO;
+    }
+
     @GetMapping("/findDiaryRecordByDiaryId")
     public List<DiaryRecordQueryDTO> findDiaryRecordByDiaryId(@RequestParam("diaryId") Long diaryId) {
         List<DiaryRecordQueryDTO> diaryRecordQueryDTOList = diaryRecordQueryService.selectDiaryRecordByDiaryId(diaryId);
