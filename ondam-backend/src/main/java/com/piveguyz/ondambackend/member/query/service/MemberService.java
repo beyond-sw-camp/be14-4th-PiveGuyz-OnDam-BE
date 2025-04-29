@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MemberService {
     List<MemberDTO> selectAllMembers();
+
+    boolean loginMember(String email, String password);
 }
