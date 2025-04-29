@@ -45,7 +45,10 @@ public class DiaryRecordService {
         while (attempt <= Maxattempt) {
             attempt++;
             List<DiaryRecordQueryDTO> diaryRecordQueryDTOList = diaryRecordQueryService.selectAllDiaryRecord();
-            List<DiaryQueryDTO> diaryQueryDTOList = diaryQueryService.selectAllDiaries();
+            List<DiaryQueryDTO> diaryQueryDTOList = diaryQueryService.selectAllDiaries().stream()
+                    .filter(diary -> diary.getDeletedAt() == null)
+                    .filter(diary -> !"Y".equals(diary.getIsBlinded()))
+                    .toList();
 
             if (diaryRecordQueryDTOList.size() == diaryQueryDTOList.size() * 3) { // 모든 일기 다 배분 완료
                 break;
@@ -87,5 +90,9 @@ public class DiaryRecordService {
             }
         }
         return true;
+    }
+
+    public int expireAllDiaryRecords() {
+        return diaryRecordRepository.expireAllDiaryRecords();
     }
 }
