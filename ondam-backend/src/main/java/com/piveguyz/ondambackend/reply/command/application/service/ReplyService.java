@@ -2,6 +2,10 @@ package com.piveguyz.ondambackend.reply.command.application.service;
 
 
 
+import com.piveguyz.ondambackend.diary.query.dto.DiaryQueryDTO;
+import com.piveguyz.ondambackend.diary.query.service.DiaryQueryService;
+import com.piveguyz.ondambackend.diaryRecord.query.dto.DiaryRecordQueryDTO;
+import com.piveguyz.ondambackend.diaryRecord.query.service.DiaryRecordQueryService;
 import com.piveguyz.ondambackend.reply.command.application.dto.ReplyDTO;
 import com.piveguyz.ondambackend.reply.command.domain.aggregate.Reply;
 import com.piveguyz.ondambackend.reply.command.domain.repository.ReplyRepository;
@@ -18,25 +22,37 @@ public class ReplyService {
     private final ReplyRepository replyRepository;
     private final ReplyMapper replyMapper;
     private final ReplyQueryService replyQueryService;
+    private final DiaryQueryService diaryQueryService;
+    private final DiaryRecordQueryService diaryRecordQueryService;
 
     @Autowired
-    public ReplyService(ReplyRepository replyRepository, ReplyMapper replyMapper, ReplyQueryService replyQueryService) {
+    public ReplyService(ReplyRepository replyRepository, ReplyMapper replyMapper, ReplyQueryService replyQueryService, DiaryQueryService diaryQueryService, DiaryRecordQueryService diaryRecordQueryService) {
         this.replyRepository = replyRepository;
         this.replyMapper = replyMapper;
         this.replyQueryService = replyQueryService;
+        this.diaryQueryService = diaryQueryService;
+        this.diaryRecordQueryService = diaryRecordQueryService;
     }
 
     public boolean writeReply(ReplyDTO replyDTO) {
+        Long diaryRecordId = replyDTO.getDiaryRecordId();
+        DiaryRecordQueryDTO diaryRecordQueryDTO = diaryRecordQueryService.selectDiaryRecordById(diaryRecordId);
+        System.out.println("replyDTO = " + replyDTO);
+        System.out.println("diaryRecordId = " + diaryRecordId);
+        System.out.println("diaryRecordQueryDTO = " + diaryRecordQueryDTO);
+        Long senderId = diaryRecordQueryDTO.getReceiverId();
+        Long receiverId = diaryRecordQueryDTO.getSenderId();
+
+
         Reply reply = new Reply();
-        reply.setId(replyDTO.getId());
         reply.setTitle(replyDTO.getTitle());
         reply.setContent(replyDTO.getContent());
-        reply.setCreatedAt(replyDTO.getCreatedAt());
-        reply.setDeletedAt(replyDTO.getDeletedAt());
-        reply.setIsBlinded(replyDTO.getIsBlinded());
-        reply.setDiaryRecordId(replyDTO.getDiaryRecordId());
-        reply.setSenderId(replyDTO.getSenderId());
-        reply.setReceiverId(replyDTO.getReceiverId());
+        reply.setCreatedAt(LocalDateTime.now());
+        reply.setDeletedAt(null);
+        reply.setIsBlinded("N");
+        reply.setDiaryRecordId(diaryRecordId);
+        reply.setSenderId(senderId);
+        reply.setReceiverId(receiverId);
 
         try {
             replyRepository.save(reply);

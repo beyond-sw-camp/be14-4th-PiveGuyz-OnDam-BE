@@ -23,6 +23,12 @@ public class DiaryRecordQueryServiceImpl implements DiaryRecordQueryService {
     }
 
     @Override
+    public DiaryRecordQueryDTO selectDiaryRecordById(Long id) {
+        DiaryRecordQueryDTO diaryRecordQueryDTO = diaryRecordMapper.findDiaryRecordById(id);
+        return diaryRecordQueryDTO;
+    }
+
+    @Override
     public List<DiaryRecordQueryDTO> selectDiaryRecordByDiaryId(Long diaryId) {
         List<DiaryRecordQueryDTO> diaryRecordQueryDTOList = diaryRecordMapper.findDiaryRecordByDiaryId(diaryId);
         return diaryRecordQueryDTOList;

@@ -1,5 +1,6 @@
 package com.piveguyz.ondambackend.analysis.command.application.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.piveguyz.ondambackend.analysis.command.application.dto.ChatCompletionDTO;
@@ -8,6 +9,7 @@ import com.piveguyz.ondambackend.analysis.command.application.dto.GptRequestDTO;
 import com.piveguyz.ondambackend.analysis.command.domain.aggregate.*;
 import com.piveguyz.ondambackend.analysis.command.domain.repository.*;
 import com.piveguyz.ondambackend.analysis.config.ChatGPTConfig;
+import com.piveguyz.ondambackend.analysis.exceptions.InvalidCounselContentException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -168,7 +170,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 
     @Override
     @Transactional
-    public void askGpt(ChatCompletionDTO chatCompletionDto) {
+    public void askGpt(ChatCompletionDTO chatCompletionDto) throws JsonProcessingException {
         log.info("ChatGPT 프롬프트 실행");
 
         List<ChatRequestMsgDTO> fullMessages = List.of(
@@ -184,41 +186,30 @@ public class AnalysisServiceImpl implements AnalysisService {
                 .messages(fullMessages)
                 .build();
 
-        try {
-            HttpHeaders headers = chatGPTConfig.httpHeaders();
-            HttpEntity<GptRequestDTO> requestEntity = new HttpEntity<>(gptRequest, headers);
-            ResponseEntity<String> response = chatGPTConfig.restTemplate()
-                    .exchange(promptUrl, HttpMethod.POST, requestEntity, String.class);
+        HttpHeaders headers = chatGPTConfig.httpHeaders();
+        HttpEntity<GptRequestDTO> requestEntity = new HttpEntity<>(gptRequest, headers);
+        ResponseEntity<String> response = chatGPTConfig.restTemplate()
+                .exchange(promptUrl, HttpMethod.POST, requestEntity, String.class);
 
-            Map<String, Object> gptResponse = objectMapper.readValue(response.getBody(), new TypeReference<>() {
-            });
-            Map<String, Object> message = (Map<String, Object>) ((Map<String, Object>) ((List<?>) gptResponse.get("choices")).get(0)).get("message");
+        Map<String, Object> gptResponse = objectMapper.readValue(response.getBody(), new TypeReference<>() {
+        });
+        Map<String, Object> message = (Map<String, Object>) ((Map<String, Object>) ((List<?>) gptResponse.get("choices")).get(0)).get("message");
 
+        String rawContent = (String) message.get("content");
+        String jsonString = rawContent
+                .replaceAll("(?i)```json", "")
+                .replaceAll("```", "")
+                .trim();
+        log.info("gpt 응답 : " + jsonString);
 
-            String rawContent = (String) message.get("content");
-            String jsonString = rawContent
-                    .replaceAll("(?i)```json", "")
-                    .replaceAll("```", "")
-                    .trim();
-            log.info("gpt 응답 : " + jsonString);
+        Map<String, Object> resultMap = objectMapper.readValue(jsonString, new TypeReference<>() {
+        });
 
-            Map<String, Object> resultMap = objectMapper.readValue(jsonString, new TypeReference<>() {
-            });
-
-            // 만약 error 필드가 있다면 DB 저장 X
-            if (resultMap.containsKey("error")) {
-                String errorMessage = (String) resultMap.get("error");
-                log.error("잘못된 입력 감지 : {}", errorMessage);
-                throw new IllegalArgumentException("잘못된 입력" + errorMessage);
-            } else saveAnalysis(resultMap, chatCompletionDto.getCounselId());
-
-        } catch (IllegalArgumentException e) {
-            // 잘못된 입력은 DB 저장 없이 예외만 던짐
-            throw e;
-        } catch (Exception e) {
-            log.error("ChatGPT 호출 또는 파싱 실패", e);
-            throw new RuntimeException("ChatGPT 요청 실패", e);
+        if (resultMap.containsKey("error")) {
+            String errorMessage = (String) resultMap.get("error");
+            throw new InvalidCounselContentException(errorMessage);
         }
+        saveAnalysis(resultMap, chatCompletionDto.getCounselId());
     }
 
     @Override

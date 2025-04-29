@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmotionAnalysisRepository extends JpaRepository<EmotionAnalysis, Long> {
     void deleteByAnalysisId(Long analysisId);
+
+    long countByEmotionId(Long id);
 }
