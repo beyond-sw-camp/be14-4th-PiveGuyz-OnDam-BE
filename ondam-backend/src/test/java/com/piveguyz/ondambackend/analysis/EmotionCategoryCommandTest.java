@@ -1,8 +1,5 @@
 package com.piveguyz.ondambackend.analysis;
 
-import com.piveguyz.ondambackend.analysis.command.application.dto.EmotionCategoryDTO;
-import com.piveguyz.ondambackend.analysis.command.application.service.EmotionCategoryService;
-import com.piveguyz.ondambackend.analysis.command.application.service.EmotionService;
 import com.piveguyz.ondambackend.analysis.command.domain.aggregate.EmotionCategory;
 import com.piveguyz.ondambackend.analysis.command.domain.repository.EmotionCategoryRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,12 +22,16 @@ public class EmotionCategoryCommandTest {
     @Autowired
     private EmotionCategoryRepository emotionCategoryRepository;
 
+    // 수정, 삭제를 위해 미리 넣어두기
+    @BeforeEach
+    void setup() {
+        emotionCategoryRepository.save(EmotionCategory.builder().name("긍정적 테스트").build());
+        emotionCategoryRepository.save(EmotionCategory.builder().name("부정적 테스트").build());
+    }
+
     // 감정 카테고리 등록 테스트
     static Stream<Arguments> createCategoryArgs() {
-        return Stream.of(
-                Arguments.of("행복"),
-                Arguments.of("슬픔")
-        );
+        return Stream.of(Arguments.of("중립/혼합 테스트"), Arguments.of("성장/회복 테스트"));
     }
 
     @ParameterizedTest
@@ -41,9 +42,7 @@ public class EmotionCategoryCommandTest {
             throw new IllegalArgumentException("이미 존재하는 감정 카테고리입니다: " + name);
         }
 
-        EmotionCategory newCategory = EmotionCategory.builder()
-                .name(name)
-                .build();
+        EmotionCategory newCategory = EmotionCategory.builder().name(name).build();
 
         emotionCategoryRepository.save(newCategory);
         assertTrue(emotionCategoryRepository.existsByName(name));
@@ -51,16 +50,10 @@ public class EmotionCategoryCommandTest {
 
 
     // 감정 카테고리 수정 테스트
-    @BeforeEach
-    void setup() {
-        emotionCategoryRepository.save(EmotionCategory.builder().name("기쁨").build());
-        emotionCategoryRepository.save(EmotionCategory.builder().name("희망").build());
-    }
-
     static Stream<Arguments> updateCategoryArgs() {
         return Stream.of(
-                Arguments.of("기쁨", "행복"),
-                Arguments.of("희망", "즐거움")
+                Arguments.of("긍정적 테스트", "대인관계 테스트"),
+                Arguments.of("부정적 테스트", "중립/혼합 테스트")
         );
     }
 
@@ -68,8 +61,7 @@ public class EmotionCategoryCommandTest {
     @DisplayName("감정 카테고리 수정 테스트")
     @MethodSource("updateCategoryArgs")
     void updateEmotionCategoryTest(String oldName, String newName) {
-        EmotionCategory existingCategory = emotionCategoryRepository.findByName(oldName)
-                .orElseThrow(() -> new IllegalArgumentException("기존 카테고리를 찾을 수 없습니다: " + oldName));
+        EmotionCategory existingCategory = emotionCategoryRepository.findByName(oldName).orElseThrow(() -> new IllegalArgumentException("기존 카테고리를 찾을 수 없습니다: " + oldName));
 
         existingCategory.updateName(newName);
         emotionCategoryRepository.save(existingCategory);
@@ -77,19 +69,16 @@ public class EmotionCategoryCommandTest {
         assertTrue(emotionCategoryRepository.existsByName(newName));
     }
 
+    // 감정 카테고리 삭제 테스트
     static Stream<Arguments> deleteCategoryArgs() {
-        return Stream.of(
-                Arguments.of("기쁨"),
-                Arguments.of("희망")
-        );
+        return Stream.of(Arguments.of("긍정적 테스트"), Arguments.of("부정적 테스트"));
     }
 
     @ParameterizedTest
     @DisplayName("감정 카테고리 삭제 테스트")
     @MethodSource("deleteCategoryArgs")
     void testDeleteEmotionCategory(String name) {
-        EmotionCategory existingCategory = emotionCategoryRepository.findByName(name)
-                .orElseThrow(() -> new IllegalArgumentException("삭제할 카테고리를 찾을 수 없습니다: " + name));
+        EmotionCategory existingCategory = emotionCategoryRepository.findByName(name).orElseThrow(() -> new IllegalArgumentException("삭제할 카테고리를 찾을 수 없습니다: " + name));
 
         emotionCategoryRepository.delete(existingCategory);
 
