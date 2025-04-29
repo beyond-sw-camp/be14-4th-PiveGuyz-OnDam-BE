@@ -4,4 +4,5 @@ import com.piveguyz.ondambackend.analysis.command.domain.aggregate.EmotionCatego
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmotionCategoryRepository extends JpaRepository<EmotionCategory, Long> {
+    boolean existsByName(String name);
 }
