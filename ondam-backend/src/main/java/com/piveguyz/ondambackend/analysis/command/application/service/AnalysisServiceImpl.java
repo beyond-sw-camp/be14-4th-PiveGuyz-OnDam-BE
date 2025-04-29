@@ -172,7 +172,8 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Transactional
     public void askGpt(ChatCompletionDTO chatCompletionDto) throws JsonProcessingException {
         log.info("ChatGPT 프롬프트 실행");
-
+        log.info("💬 GPT 요청 메시지: {}", objectMapper.writeValueAsString(chatCompletionDto));
+        log.info("💬 message size: {}", chatCompletionDto.getMessages() != null ? chatCompletionDto.getMessages().size() : "null");
         List<ChatRequestMsgDTO> fullMessages = List.of(
                 ChatRequestMsgDTO.builder()
                         .role("system")
@@ -185,6 +186,7 @@ public class AnalysisServiceImpl implements AnalysisService {
                 .model(openaiModel)
                 .messages(fullMessages)
                 .build();
+        log.info("💬 GptRequestDTO = {}", objectMapper.writeValueAsString(gptRequest));
 
         HttpHeaders headers = chatGPTConfig.httpHeaders();
         HttpEntity<GptRequestDTO> requestEntity = new HttpEntity<>(gptRequest, headers);
