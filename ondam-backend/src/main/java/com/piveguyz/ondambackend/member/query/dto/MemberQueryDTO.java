@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class
-MemberDTO {
+MemberQueryDTO {
     private Long id;
     private String name;
     private String email;
