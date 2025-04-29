@@ -14,6 +14,7 @@ MemberDTO {
     private String birthday;
     private LocalDateTime createdAt;
     private LocalDateTime deletedAt;
+    private String phone;
     private String profileImageUrl;
     private String address;
     private Integer point;

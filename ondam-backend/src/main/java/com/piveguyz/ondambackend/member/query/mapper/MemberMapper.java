@@ -9,7 +9,5 @@ import java.util.List;
 
 @Mapper
 public interface MemberMapper {
-    @Select("SELECT * FROM member")
-    List<MemberDTO> findAllMembers();
-
+    List<MemberDTO> findAllMembers(); // @Select 제거
 }

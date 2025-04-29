@@ -23,6 +23,18 @@
         WHERE is_expired = 'N';
     </select>
 
+    <select id="findDiaryRecordById" resultMap="DiaryRecordResultMap">
+        SELECT
+            id,
+            diary_id,
+            sender_id,
+            receiver_id,
+            is_expired
+        FROM diary_record
+        WHERE is_expired = 'N'
+        AND id = #{id};
+    </select>
+
     <select id="findDiaryRecordByDiaryId" resultMap="DiaryRecordResultMap">
         SELECT
             id,

@@ -7,6 +7,8 @@ import java.util.List;
 public interface DiaryRecordQueryService {
     List<DiaryRecordQueryDTO> selectAllDiaryRecord();
 
+    DiaryRecordQueryDTO selectDiaryRecordById(Long id);
+
     List<DiaryRecordQueryDTO> selectDiaryRecordByDiaryId(Long diaryId);
 
     List<DiaryRecordQueryDTO> selectDiaryRecordByReceiverId(Long receiverId);
