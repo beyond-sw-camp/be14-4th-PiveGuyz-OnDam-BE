@@ -35,10 +35,16 @@ public class MemberCommandController {
         return  ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공!");
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/delete")
     public ResponseEntity<String> deleteMember(@PathVariable Long id) {
         memberService.deleteMember(id);
         return ResponseEntity.ok("회원 탈퇴 완료!");
     }
-
+    // 비밀번호 수정
+    @PutMapping("/{id}/password")
+    public ResponseEntity<String> changePassword(@PathVariable Long id,
+                                                 @RequestBody ChangePasswordDTO passwordDTO) {
+        memberService.changePassword(id, passwordDTO);
+        return ResponseEntity.ok("비밀번호가 성공적으로 변경되었습니다.");
+    }
 }

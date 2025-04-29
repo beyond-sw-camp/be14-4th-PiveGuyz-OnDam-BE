@@ -8,4 +8,6 @@ public interface MemberService {
     List<MemberDTO> selectAllMembers();
 
     boolean loginMember(String email, String password);
+
+    MemberDTO findMemberById(Long id);
 }
