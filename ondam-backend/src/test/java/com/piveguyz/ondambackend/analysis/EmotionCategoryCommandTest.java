@@ -31,7 +31,10 @@ public class EmotionCategoryCommandTest {
 
     // 감정 카테고리 등록 테스트
     static Stream<Arguments> createCategoryArgs() {
-        return Stream.of(Arguments.of("중립/혼합 테스트"), Arguments.of("성장/회복 테스트"));
+        return Stream.of(
+                Arguments.of("중립/혼합 테스트"),
+                Arguments.of("성장/회복 테스트")
+        );
     }
 
     @ParameterizedTest
@@ -71,7 +74,9 @@ public class EmotionCategoryCommandTest {
 
     // 감정 카테고리 삭제 테스트
     static Stream<Arguments> deleteCategoryArgs() {
-        return Stream.of(Arguments.of("긍정적 테스트"), Arguments.of("부정적 테스트"));
+        return Stream.of(
+                Arguments.of("긍정적 테스트"),
+                Arguments.of("부정적 테스트"));
     }
 
     @ParameterizedTest
