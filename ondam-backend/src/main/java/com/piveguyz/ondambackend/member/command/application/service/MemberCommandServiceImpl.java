@@ -5,6 +5,8 @@ import com.piveguyz.ondambackend.member.command.application.dto.MemberDTO;
 import com.piveguyz.ondambackend.member.command.domain.aggregate.MemberEntity;
 import com.piveguyz.ondambackend.member.command.domain.repository.MemberRepository;
 
+import com.piveguyz.ondambackend.member.query.dto.MemberQueryDTO;
+import com.piveguyz.ondambackend.member.query.service.MemberQueryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -17,16 +19,18 @@ import java.util.Date;
 @Service
 public class MemberCommandServiceImpl implements MemberService {
 
-    MemberRepository memberRepository;
-    ModelMapper modelMapper;
+    private final MemberQueryService memberQueryService;
+    private final MemberRepository memberRepository;
+    private final ModelMapper modelMapper;
 
-    @Autowired
+
+
     public MemberCommandServiceImpl(MemberRepository memberRepository,
-                                    ModelMapper modelMapper
-    ) {
+                                    ModelMapper modelMapper,
+                                    MemberQueryService memberQueryService) {
         this.memberRepository = memberRepository;
         this.modelMapper = modelMapper;
-
+        this.memberQueryService = memberQueryService;
     }
 
     // 회원가입
@@ -78,7 +82,29 @@ public class MemberCommandServiceImpl implements MemberService {
         memberRepository.save(member);
     }
 
-   }
+    // add point
+    public void plusPoint(Long id) {
+        MemberQueryDTO memberQueryDTO = memberQueryService.findMemberById(id);
+        Integer point = memberQueryDTO.getPoint();
+        point += 10;
+        memberQueryDTO.setPoint(point);
+        MemberEntity member = new MemberEntity();
+        member = modelMapper.map(memberQueryDTO, MemberEntity.class);
+        memberRepository.save(member);
+    }
+
+    // minus point
+    public void minusPoint(Long id) {
+        MemberQueryDTO memberQueryDTO = memberQueryService.findMemberById(id);
+        Integer point = memberQueryDTO.getPoint();
+        point -= 10;
+        memberQueryDTO.setPoint(point);
+        MemberEntity member = new MemberEntity();
+        member = modelMapper.map(memberQueryDTO, MemberEntity.class);
+        memberRepository.save(member);
+    }
+}
+
 
 
 
