@@ -77,7 +77,7 @@ public class EmotionCategoryCommandTest {
     @ParameterizedTest
     @DisplayName("감정 카테고리 삭제 테스트")
     @MethodSource("deleteCategoryArgs")
-    void testDeleteEmotionCategory(String name) {
+    void deleteEmotionCategoryTest(String name) {
         EmotionCategory existingCategory = emotionCategoryRepository.findByName(name).orElseThrow(() -> new IllegalArgumentException("삭제할 카테고리를 찾을 수 없습니다: " + name));
 
         emotionCategoryRepository.delete(existingCategory);
