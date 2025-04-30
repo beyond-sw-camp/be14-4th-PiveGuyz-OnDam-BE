@@ -18,21 +18,21 @@ public class DiaryRecordService {
     private final DiaryQueryService diaryQueryService;
     private final DiaryRecordQueryService diaryRecordQueryService;
     private final DiaryRecordRepository diaryRecordRepository;
-    private final MemberQueryService memberService;
+    private final MemberQueryService memberQueryService;
 
     @Autowired
-    public DiaryRecordService(DiaryQueryService diaryQueryService, DiaryRecordQueryService diaryRecordQueryService, DiaryRecordRepository diaryRecordRepository, MemberQueryService memberService) {
+    public DiaryRecordService(DiaryQueryService diaryQueryService, DiaryRecordQueryService diaryRecordQueryService, DiaryRecordRepository diaryRecordRepository, MemberQueryService memberQueryService) {
         this.diaryQueryService = diaryQueryService;
         this.diaryRecordQueryService = diaryRecordQueryService;
         this.diaryRecordRepository = diaryRecordRepository;
-        this.memberService = memberService;
+        this.memberQueryService = memberQueryService;
     }
 
     public boolean sendDiary(Long diaryId) {
         int attempt = 0;
         int Maxattempt = 100;
 
-        List<MemberQueryDTO> allMembers = memberService.selectAllMembers(); // 회원 전부 조회
+        List<MemberQueryDTO> allMembers = memberQueryService.selectAllMembers(); // 회원 전부 조회
         List<Long> availableMemberIds = allMembers.stream()
                 .filter(member -> "N".equals(member.getIsDiaryBlocked())) // isDiaryBlocked == "N" 인 회원만
                 .map(MemberQueryDTO::getId) // id만 뽑음
@@ -83,6 +83,7 @@ public class DiaryRecordService {
             diaryRecord.setDiaryId(diaryId);
             diaryRecord.setSenderId(senderId);
             diaryRecord.setReceiverId(receiverId);
+            diaryRecord.setIsExpired("N");
             try {
                 diaryRecordRepository.save(diaryRecord);
             } catch (Exception e) {
