@@ -143,11 +143,9 @@ replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij
 
-# 깃에 올리면 안되는 보안상 민감한 파일
-application.yml
-applicaiton.properties
-
 db_schema.sql
 
 # intellij
 *.idea
+
+.env
