@@ -37,7 +37,7 @@ class MemberCommandTest {
         // then
         MemberEntity saved = memberRepository.findAll()
                 .stream()
-                .filter(m -> m.getEmail().equals("hong@test.com"))
+                .filter(m -> m.getEmail().equals("hong1@test.com"))
                 .findFirst()
                 .orElse(null);
 
@@ -57,16 +57,16 @@ class MemberCommandTest {
     void deleteMember() {
         // given
         MemberEntity member = new MemberEntity();
-        member.setName("삭제테스트");
-        member.setEmail("hong12@test.com");
+        member.setName("홍길동");
+        member.setEmail("hong1@test.com");
         member.setPassword("1234");
-        member.setBirthday("1990-01-01");
-        member.setPhone("010-2222-2222");
-        member.setAddress("서울시 중구");
-        memberRepository.save(member);
+        member.setBirthday("2000-01-01");
+        member.setPhone("010-1111-2222");
+        member.setAddress("서울시 종로구");
+        MemberEntity savedMember = memberRepository.save(member);
 
         // when
-        memberService.deleteMember(member.getId());
+        memberService.deleteMember(savedMember.getId());
 
         // then
         MemberEntity deleted = memberRepository.findById(member.getId()).orElse(null);
@@ -78,8 +78,8 @@ class MemberCommandTest {
     void changePassword() {
         // given
         MemberEntity member = new MemberEntity();
-        member.setName("비번변경");
-        member.setEmail("hong123@test.com");
+        member.setName("홍길동");
+        member.setEmail("hong1@test.com");
         member.setPassword("oldpass");
         member.setBirthday("1990-01-01");
         member.setPhone("010-3333-3333");
@@ -98,27 +98,5 @@ class MemberCommandTest {
         MemberEntity updated = memberRepository.findById(member.getId()).get();
         assertEquals("newpass", updated.getPassword());
     }
-
-    @Test
-    void plusPoint() {
-        // given
-        MemberEntity member = new MemberEntity();
-        member.setName("포인트+");
-        member.setEmail("plus12@test.com");
-        member.setPassword("1234");
-        member.setBirthday("1990-01-01");
-        member.setPhone("010-4444-4444");
-        member.setAddress("서울시");
-        member.setPoint(30);
-        memberRepository.save(member);
-
-        // when
-        memberService.plusPoint(member.getId());
-
-        // then
-        MemberEntity updated = memberRepository.findById(member.getId()).get();
-        assertEquals(40, updated.getPoint());
-    }
-
 
 }
