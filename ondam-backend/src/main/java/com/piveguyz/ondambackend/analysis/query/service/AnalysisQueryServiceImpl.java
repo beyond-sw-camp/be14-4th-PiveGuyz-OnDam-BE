@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("QueryAnalysisService")
-public class AnalysisServiceImpl implements AnalysisService {
+@Service
+public class AnalysisQueryServiceImpl implements AnalysisQueryService {
     private final AnalysisResultMapper analysisResultMapper;
 
     @Autowired
-    public AnalysisServiceImpl(AnalysisResultMapper analysisResultMapper) {
+    public AnalysisQueryServiceImpl(AnalysisResultMapper analysisResultMapper) {
         this.analysisResultMapper = analysisResultMapper;
     }
 
