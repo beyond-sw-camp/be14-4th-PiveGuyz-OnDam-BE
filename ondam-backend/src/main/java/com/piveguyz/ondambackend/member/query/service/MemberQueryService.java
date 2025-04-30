@@ -10,4 +10,8 @@ public interface MemberQueryService {
     boolean loginMember(String email, String password);
 
     MemberQueryDTO findMemberById(Long id);
+
+    MemberQueryDTO findMemberByNameAndPhone(String name, String phone);
+
+    MemberQueryDTO findMemberByNameAndEmail(String name, String email);
 }
