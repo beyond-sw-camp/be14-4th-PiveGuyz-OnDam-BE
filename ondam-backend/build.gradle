@@ -17,10 +17,10 @@ sourceSets {
     main {
         resources {
             srcDirs = ['src/main/resources']
+            includes = ['**/*.yml', '**/*.properties']
         }
     }
 }
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
