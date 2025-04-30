@@ -4,6 +4,8 @@ WORKDIR /app
 
 # gradle wrapper의 필요한 파일 먼저 복사
 COPY gradlew ./
+RUN chmod +x gradlew
+
 COPY gradle ./gradle
 COPY build.gradle settings.gradle ./
 COPY src ./src
