@@ -33,7 +33,21 @@ public class MemberServiceImpl implements MemberQueryService {
                 );
     }
     @Override
-    public MemberQueryDTO findMemberById(Long id) { // ★ 추가
+    public MemberQueryDTO findMemberById(Long id)
+    { // ★ 추가
         return memberMapper.findMemberById(id);
     }
+
+    @Override
+    public MemberQueryDTO findMemberByNameAndPhone(String name, String phone) {
+        System.out.println(">>> name = " + name);
+        System.out.println(">>> phone = " + phone);
+        return memberMapper.findMemberByNameAndPhone(name, phone);
+    }
+
+    @Override
+    public MemberQueryDTO findMemberByNameAndEmail(String name, String email) {
+        return memberMapper.findMemberByNameAndEmail(name, email);
+    }
+
 }

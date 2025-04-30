@@ -31,4 +31,20 @@
         WHERE id = #{id} AND deleted_at IS NULL
     </select>
 
+    <select id="findMemberByNameAndPhone" resultMap="MemberResultMap">
+        SELECT *
+        FROM member
+        WHERE name = #{name}
+          AND phone = #{phone}
+          AND deleted_at IS NULL
+    </select>
+
+    <select id="findMemberByNameAndEmail" resultMap="MemberResultMap">
+        SELECT *
+        FROM member
+        WHERE name = #{name}
+          AND email = #{email}
+          AND deleted_at IS NULL
+    </select>
+
 </mapper>
