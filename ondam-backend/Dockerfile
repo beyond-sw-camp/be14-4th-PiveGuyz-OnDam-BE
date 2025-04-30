@@ -19,5 +19,5 @@ RUN ./gradlew clean build -x test --no-daemon
 # 실행용 JAR 추출
 RUN cp build/libs/$(ls build/libs | grep -v plain) app.jar
 
-EXPOSE 8080
+EXPOSE 8083
 ENTRYPOINT ["java", "-jar", "app.jar"]
