@@ -4,10 +4,13 @@ WORKDIR /app
 # Gradle 캐시 경로 변경 (권한 문제 회피)
 ENV GRADLE_USER_HOME=/app/cache
 
-# gradle wrapper 및 프로젝트 복사
+# 전체 소스 복사
 COPY gradlew ./
 COPY gradle ./gradle
 COPY build.gradle settings.gradle ./
+COPY src ./src
+
+# 반드시 명시적으로 resource도 복사 (안정성↑)
 COPY src/main/resources/application.yml ./src/main/resources/
 
 # 실행 권한 부여
