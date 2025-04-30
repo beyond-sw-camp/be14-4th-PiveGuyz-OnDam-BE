@@ -11,7 +11,7 @@ COPY build.gradle settings.gradle ./
 COPY src ./src
 
 # 반드시 명시적으로 resource도 복사 (안정성↑)
-COPY src/main/resources/application.yml ./src/main/resources/
+COPY src/main/resources/application.yml src/main/resources/
 
 # 실행 권한 부여
 RUN chmod +x gradlew
