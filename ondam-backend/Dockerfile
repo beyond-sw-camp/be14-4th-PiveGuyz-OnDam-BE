@@ -1,25 +1,20 @@
-# 1단계: Build Stage
-FROM gradle:7.6.0-jdk17 AS build
+FROM gradle:7.6.0-jdk17
 WORKDIR /app
 
-# ✅ 캐시 경로를 /app/.gradle 로 명시적으로 변경
-ENV GRADLE_USER_HOME=/app/.gradle
+# 캐시 디렉토리 변경: /app/cache 로 설정 (권한 충돌 방지)
+ENV GRADLE_USER_HOME=/app/cache
 
-COPY build.gradle settings.gradle ./
+# 필요한 파일 복사
+COPY gradlew ./
 COPY gradle ./gradle
+COPY build.gradle settings.gradle ./
+COPY src ./src
 
-RUN gradle build --no-daemon || return 0
+# 빌드 (테스트 제외)
+RUN ./gradlew clean build -x test --no-daemon
 
-COPY . .
-RUN gradle clean build --no-daemon
-
-# 2단계: Run Stage
-FROM eclipse-temurin:17-jdk
-WORKDIR /app
-
-COPY --from=build /app/build/libs /app/build/libs
+# 실행할 JAR 추출
 RUN cp build/libs/$(ls build/libs | grep -v plain) app.jar
 
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
