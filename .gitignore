@@ -149,3 +149,4 @@ db_schema.sql
 *.idea
 
 .env
+application.yml
