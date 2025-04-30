@@ -9,7 +9,7 @@ COPY build.gradle settings.gradle ./
 COPY src ./src
 
 # 🔥 반드시 bootJar
-RUN ./gradlew clean bootJar -x test --no-daemon
+RUN ./gradlew clean bootJar --no-daemon --refresh-dependencies -x test
 RUN cp build/libs/$(ls build/libs | grep -v plain) app.jar
 
 FROM eclipse-temurin:17-jre
