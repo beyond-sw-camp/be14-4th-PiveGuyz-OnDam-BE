@@ -17,7 +17,7 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
 COPY --from=build /app/app.jar .
-COPY src/main/resources/application.yml ./application.yml  # ✅ 추가 필요
+COPY src/main/resources/application.yml ./application.yml
 
 EXPOSE 8083
 ENTRYPOINT ["java", "-jar", "app.jar"]
