@@ -1,23 +1,20 @@
-FROM gradle:7.6.0-jdk17 AS build
+FROM gradle:7.6.0-jdk17
 WORKDIR /app
 
-COPY gradlew ./
-COPY gradle ./gradle
-COPY build.gradle settings.gradle ./
-COPY src ./src
+# 전체 프로젝트 복사 (application.yml 포함)
+COPY . .
 
-RUN chmod +x gradlew
-RUN ./gradlew build -x test --no-daemon
+# gradlew 실행 권한 부여
+RUN chmod +x ./gradlew
+
+# 빌드 (테스트 제외)
+RUN ./gradlew clean build -x test --no-daemon
+
+# 실행할 JAR 복사 (가장 마지막 빌드된 파일)
 RUN cp build/libs/$(ls build/libs | grep -v plain) app.jar
 
-# ✅ application.yml도 별도 복사해서 런타임에 JAR 옆에 놓기
-COPY src/main/resources/application.yml ./application.yml
-
-FROM eclipse-temurin:17-jre
-WORKDIR /app
-
-COPY --from=build /app/app.jar .
-COPY --from=build /app/application.yml .
-
+# 포트 오픈 (Spring 설정 포트와 일치시켜야 함)
 EXPOSE 8083
-ENTRYPOINT ["java", "-jar", "app.jar", "--spring.config.location=classpath:/,file:./application.yml"]
+
+# Spring Boot 실행 + 로그 레벨 조정 + 외부 config 명시
+ENTRYPOINT ["java", "-Dlogging.level.root=INFO", "-Dlogging.level.org.springframework=DEBUG", "-jar", "app.jar", "--spring.config.location=classpath:/,file:./application.yml"]
