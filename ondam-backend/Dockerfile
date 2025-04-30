@@ -7,6 +7,7 @@ COPY gradle ./gradle
 RUN gradle build --no-daemon || return 0
 
 COPY . .
+RUN rm -rf .gradle
 RUN gradle clean build --no-daemon
 
 # 2단계: Run Stage
