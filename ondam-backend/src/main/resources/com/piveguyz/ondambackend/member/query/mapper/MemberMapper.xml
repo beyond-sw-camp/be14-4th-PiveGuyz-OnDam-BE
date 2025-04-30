@@ -26,7 +26,7 @@
         FROM member;
     </select>
 
-    <select id="findMemberById" parameterType="long" resultType="com.piveguyz.ondambackend.member.query.dto.MemberQueryDTO">
+    <select id="findMemberById" resultMap="MemberResultMap">
         SELECT * FROM member
         WHERE id = #{id} AND deleted_at IS NULL
     </select>

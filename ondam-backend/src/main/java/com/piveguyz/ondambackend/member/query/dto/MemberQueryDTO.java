@@ -1,10 +1,12 @@
 package com.piveguyz.ondambackend.member.query.dto;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Data
+@ToString
 public class
 MemberQueryDTO {
     private Long id;
