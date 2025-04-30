@@ -19,11 +19,16 @@ public class DiaryController {
 
     @PostMapping("/writeDiary")
     public ResponseEntity<String> writeDiary(@RequestBody DiaryDTO diaryDTO) {
-        boolean result = diaryService.writeDiary(diaryDTO);
-        if(result){
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("일기 작성이 완료되었습니다.");
-        } else {
+        String result = diaryService.writeDiary(diaryDTO);
+
+        if(result.substring(0,2).equals("성공")) {
+            Integer point = Integer.parseInt(result.substring(2));
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("일기 작성에 성공하였습니다. 남은 포인트는 " + point + "입니다.");
+        } else if(result.substring(0,2).equals("실패")) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("일기 작성에 실패하였습니다.");
+        } else {
+            Integer point = Integer.parseInt(result.substring(3));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("포인트가 부족합니다. 남은 포인트는 " + point + "입니다.");
         }
     }
     @DeleteMapping("/deleteDiary")

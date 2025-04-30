@@ -32,12 +32,12 @@ public class DiaryService {
         this.memberService = memberService;
     }
 
-    public boolean writeDiary(DiaryDTO diaryDTO) {
+    public String writeDiary(DiaryDTO diaryDTO) {
         Long writerId = diaryDTO.getMemberId();
         MemberQueryDTO memberQueryDTO = memberQueryService.findMemberById(writerId);
         Integer point = memberQueryDTO.getPoint();
         if(point < 10){
-            return false;   // point 10미만은 일기 작성 불가
+            return "포인트" + point;   // point 10미만은 일기 작성 불가
         }
         Diary diary = new Diary();
         diary.setTitle(diaryDTO.getTitle());
@@ -50,9 +50,10 @@ public class DiaryService {
         try {
             diaryRepository.save(diary);
             memberService.minusPoint(writerId);     // 10점 차감
-            return true;
+            point -= 10;
+            return "성공" + point;
         } catch (Exception e) {
-            return false;
+            return "실패";
         }
     }
 
