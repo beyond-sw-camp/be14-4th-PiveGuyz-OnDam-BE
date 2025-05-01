@@ -75,14 +75,6 @@
 
 ## 📑 API 명세서
 
-<br><br>
-
-## 🚩 단위 테스트
-
-<br><br>
-
-## ✍🏻 API TEST
-
 ### 1. Member
 <details><summary> 전체 회원 조회 </summary>
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/select_all_member.png">
@@ -332,6 +324,121 @@
 <details><summary> 신고 카테고리 삭제 </summary>
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/delete_report_category.png">
 </details>
+
+
+<br><br>
+
+## 🚩 단위 테스트
+<img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Summary.png">
+
+<details>
+  
+  ### 1. Member
+  <details><summary> Summary </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberTestSummary.png">
+  </details>
+  
+  <details><summary> Member Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberCommandTest.png">
+  </details>
+  
+  <details><summary> Member Query Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberQueryTest.png">
+  </details>
+  
+  ### 2. Counselee
+  <details><summary>  </summary>
+    <img src="">
+  </details>
+  
+  ### 3. Counsel
+  <details>
+    <img src="">
+  </details>
+  
+  ### 4. Analysis
+  <details><summary> Summary </summary>
+    <img src="">
+  </details>
+  
+  <details><summary> Analysis Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/AnalysisCommandTest.png">
+  </details>
+  
+  <details><summary> Analysis Query Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/AnalysisQueryTest.png">
+  </details>
+  
+  <details><summary> Emotion Category Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/EmotionCategoryCommandTest.png">
+  </details>
+  
+  <details><summary> Emotion Category Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/EmotionCommandTest.png">
+  </details>
+  
+  ### 5. Diary
+  <details><summary> Summary </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryTestSummary.png">
+  </details>
+  
+  <details><summary> Diary Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryCommandTest.png">
+  </details>
+  
+  <details><summary> Diary Query Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryQueryTest.png">
+  </details>
+  
+  ### 6. Diary Record
+  <details><summary> Summary </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordTestSummary.png">
+  </details>
+  
+  <details><summary> Diary Record Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordCommandTest.png">
+  </details>
+  
+  <details><summary> Diary Record Query Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordQueryTest.png">
+  </details>
+  
+  ### 7. Reply
+  <details><summary> Summary </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyTestSummary.png">
+  </details>
+  
+  <details><summary> Reply Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyCommandTest.png">
+  </details>
+  
+  <details><summary> Reply Query Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyQueryTest.png">
+  </details>
+  
+  ### 8. Report
+  <details><summary> Summary </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportTestSummary.png">
+  </details>
+  
+  <details><summary> Report Category Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportCategoryCommandTest.png">
+  </details>
+  
+  <details><summary> Report Command Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportCommandTest.png">
+  </details>
+  
+  <details><summary> Report Query Test </summary>
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportQueryTest.png">
+  </details>
+  
+</details>
+
+<br><br>
+
+## ✍🏻 API TEST
+
 
 <br><br>
 
