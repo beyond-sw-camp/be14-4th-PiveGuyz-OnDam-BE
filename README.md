@@ -273,3 +273,38 @@
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/delete_report_category.png">
 </details>
 
+## 동료평가
+|곽우석| peer review |
+|:---:|-|
+|김석희| 평가 내용 |
+|서민종| 평가 내용 |
+|이상모| 평가 내용 |
+|최혜민| 평가 내용 |
+
+|김석희| peer review |
+|:---:|-|
+|곽우석| 평가 내용 |
+|서민종| 평가 내용 |
+|이상모| 평가 내용 |
+|최혜민| 평가 내용 |
+
+|서민종| peer review |
+|:---:|-|
+|곽우석| 평가 내용 |
+|김석희| 평가 내용 |
+|이상모| 평가 내용 |
+|최혜민| 평가 내용 |
+
+|이상모| peer review |
+|:---:|-|
+|곽우석| 평가 내용 |
+|김석희| 평가 내용 |
+|서민종| 평가 내용 |
+|최혜민| 평가 내용 |
+
+|최혜민| peer review |
+|:---:|-|
+|곽우석| 평가 내용 |
+|김석희| 평가 내용 |
+|서민종| 평가 내용 |
+|이상모| 평가 내용 |
