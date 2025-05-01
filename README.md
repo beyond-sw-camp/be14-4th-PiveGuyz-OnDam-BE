@@ -1,13 +1,16 @@
-# ondam-backend
+# 💕 ON:DAM
 
 ## 👨‍💻 DEVELOPERS
 
-## 목차
+<br><br>
 
+## 🔖 목차
+
+<br><br>
 
 ## 📢 프로젝트 개요
 
-
+<br><br>
 
 ## 🛠️기술 스택
 ### FrontEnd
@@ -19,7 +22,7 @@
 
 ### BackEnd
 ![Java](https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white)
-![Spring](https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![SpringBoot](https://img.shields.io/badge/springBoot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 
 ### DataBase
 ![MariaDB](https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white")
@@ -28,20 +31,21 @@
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 
+<br><br>
 
 ## 🪄 시스템 아키텍처
 
-
+<br><br>
 
 ## 💡 주요 기능
 
-
+<br><br>
 
 ## 🙆‍♀️ 요구사항 명세서
 
-
+<br><br>
 
 ## 📅 WBS
 🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR__7O6DlnXXUGEaxhkK_3oesVtv2Zx80H0IAnnmE2s9OVIhTcCT-D-HdJnyqEubRVIg5wPHXdzKU84/pubhtml?gid=2031264111&single=true"> WBS 자세히 보기</a><br> <br>
@@ -49,54 +53,33 @@
 
 <br><br>
 
+## 💭 DDD 설계
 
+<br><br>
 
-## DDD 설계
-
-
-
-## DB 모델링
+## 🗃️ DB 모델링
 ### 논리 모델링
 
 
 ### 물리 모델링
 
+<br><br>
 
-
-## 화면 설계
+## 🖼️ 화면 설계
 ### 와이어 프레임
 
 
 ### UI 설계
 
+<br><br>
 
+## 📑 API 명세서
 
-## 단위 테스트
+<br><br>
 
+## 🚩 단위 테스트
 
-
-## API 테스트
-
-
-
-## API 명세서
-
-
-
-## 배포
-### CI/CD 아키텍처
-
-
-### jenkinsfile 코드
-
-
-### CI/CD 테스트 결과
-
-
-
-## 향후 확장 계획
-
-
+<br><br>
 
 ## ✍🏻 API TEST
 
@@ -350,6 +333,23 @@
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/delete_report_category.png">
 </details>
 
+<br><br>
+
+## 🛜 배포
+### CI/CD 아키텍처
+
+
+### jenkinsfile 코드
+
+
+### CI/CD 테스트 결과
+
+
+<br><br>
+
+## 🔜 향후 확장 계획
+
+<br><br>
 
 ## 동료평가
 |곽우석| peer review |
