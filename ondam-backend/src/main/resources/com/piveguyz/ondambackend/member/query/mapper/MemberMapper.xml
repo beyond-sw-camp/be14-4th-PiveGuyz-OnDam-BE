@@ -47,4 +47,12 @@
           AND deleted_at IS NULL
     </select>
 
+    <select id="login" resultMap="MemberResultMap">
+        SELECT *
+        FROM member
+        WHERE email = #{email}
+          AND password = #{password}
+          AND deleted_at IS NULL
+    </select>
+
 </mapper>
