@@ -27,11 +27,13 @@ public class MemberQueryController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<String> loginMember(@RequestBody RequestLoginVO requestLoginVO) {
-        boolean loginResult = memberService.loginMember(requestLoginVO.getEmail(), requestLoginVO.getPassword());
-
-        if (loginResult) {
-            return ResponseEntity.ok("로그인 성공!");
+    public ResponseEntity<?> loginMember(@RequestBody RequestLoginVO requestLoginVO) {
+        MemberQueryDTO loginResult = memberService.loginMember(
+                requestLoginVO.getEmail(),
+                requestLoginVO.getPassword()
+        );
+        if (loginResult != null) {
+            return ResponseEntity.ok(loginResult);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
         }

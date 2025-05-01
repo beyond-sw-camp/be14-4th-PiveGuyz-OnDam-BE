@@ -23,15 +23,8 @@ public class MemberServiceImpl implements MemberQueryService {
     }
 
     @Override
-    public boolean loginMember(String email, String password) {
-        List<MemberQueryDTO> memberDTOList = memberMapper.login();
-
-        return  memberDTOList.stream()
-                .anyMatch(memberDTO ->
-                        memberDTO.getEmail().equals(email) &&
-                                memberDTO.getPassword().equals(password) &&
-                                    memberDTO.getDeletedAt() == null
-                );
+    public MemberQueryDTO loginMember(String email, String password) {
+        return  memberMapper.findMemberByEmailAndPassword(email, password);
     }
     @Override
     public MemberQueryDTO findMemberById(Long id)
