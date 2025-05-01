@@ -71,6 +71,15 @@
 
 ### UI 설계
 
+### 1. Member
+### 2. Counselee
+### 3. Counsel
+### 4. Analysis
+### 5. Diary
+### 6. Diary Record
+### 7. Reply
+### 8. Report
+
 <br><br>
 
 ## 📑 API 명세서
@@ -439,6 +448,14 @@
 
 ## ✍🏻 API TEST
 
+### 1. Member
+### 2. Counselee
+### 3. Counsel
+### 4. Analysis
+### 5. Diary
+### 6. Diary Record
+### 7. Reply
+### 8. Report
 
 <br><br>
 
