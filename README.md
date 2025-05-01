@@ -1,5 +1,14 @@
 # ondam-backend
 
+## 👨‍💻 DEVELOPERS
+
+## 목차
+
+
+## 📢 프로젝트 개요
+
+
+
 ## 🛠️기술 스택
 ### FrontEnd
 ![Vue](https://img.shields.io/badge/Vue%203-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
@@ -20,6 +29,74 @@
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white)
+
+
+## 🪄 시스템 아키텍처
+
+
+
+## 💡 주요 기능
+
+
+
+## 🙆‍♀️ 요구사항 명세서
+
+
+
+## 📅 WBS
+🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR__7O6DlnXXUGEaxhkK_3oesVtv2Zx80H0IAnnmE2s9OVIhTcCT-D-HdJnyqEubRVIg5wPHXdzKU84/pubhtml?gid=2031264111&single=true"> WBS 자세히 보기</a><br> <br>
+<img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/WBS/wbs.png?raw=true" width = "1000"/>
+
+<br><br>
+
+
+
+## DDD 설계
+
+
+
+## DB 모델링
+### 논리 모델링
+
+
+### 물리 모델링
+
+
+
+## 화면 설계
+### 와이어 프레임
+
+
+### UI 설계
+
+
+
+## 단위 테스트
+
+
+
+## API 테스트
+
+
+
+## API 명세서
+
+
+
+## 배포
+### CI/CD 아키텍처
+
+
+### jenkinsfile 코드
+
+
+### CI/CD 테스트 결과
+
+
+
+## 향후 확장 계획
+
+
 
 ## ✍🏻 API TEST
 
@@ -272,6 +349,7 @@
 <details><summary> 신고 카테고리 삭제 </summary>
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/delete_report_category.png">
 </details>
+
 
 ## 동료평가
 |곽우석| peer review |
