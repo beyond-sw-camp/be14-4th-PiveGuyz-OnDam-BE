@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @MapperScan(basePackages = "com.piveguyz.ondambackend", annotationClass = Mapper.class)
 public class OndamBackendApplication {
-
+// 백엔드 자동 배포 테스트 1
     public static void main(String[] args) {
         SpringApplication.run(OndamBackendApplication.class, args);
     }
