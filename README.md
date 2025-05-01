@@ -146,7 +146,7 @@
 </details>
 
 <details><summary> 감정 카테고리 수정 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/delete_emotion_category.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/update_emotion.png">
 </details>
 
 <details><summary> 감정 카테고리 삭제 </summary>
@@ -234,7 +234,7 @@
 </details>
 
 <details><summary> 신고 컨텐츠 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/all_report_category.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/select_category_content.png">
 </details>
 
 <details><summary> 신고 카테고리 전체 조회 </summary>
@@ -246,7 +246,7 @@
 </details>
 
 <details><summary> 답장 신고 등록 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/diary_report.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_reply.png">
 </details>
 
 <details><summary> 신고 처리 상태 변경 </summary>
