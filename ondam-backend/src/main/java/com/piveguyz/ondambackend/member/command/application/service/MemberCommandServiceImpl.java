@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -136,6 +137,36 @@ public class MemberCommandServiceImpl implements MemberService {
         member.setIsDiaryBlocked(memberQueryDTO.getIsDiaryBlocked());
         memberRepository.save(member);
     }
+
+    @Override
+    @Transactional
+    public String resetPasswordWithTemp(String name, String email) {
+        MemberQueryDTO member = memberQueryService.findMemberByNameAndEmail(name, email);
+        if (member == null) return null;
+
+        // 랜덤 임시 비밀번호 생성
+        String tempPassword = generateTempPassword();
+
+        // DB에서 실제 엔티티 가져와서 비번 업데이트
+        MemberEntity entity = memberRepository.findByIdAndDeletedAtIsNull(member.getId())
+                .orElseThrow(() -> new RuntimeException("회원이 존재하지 않거나 탈퇴됨"));
+
+        entity.setPassword(tempPassword); // 평문 저장
+        memberRepository.save(entity);    // 저장
+
+        return tempPassword;
+    }
+
+    private String generateTempPassword() {
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            sb.append(chars.charAt(random.nextInt(chars.length())));
+        }
+        return sb.toString();
+    }
+
 }
 
 
