@@ -55,14 +55,14 @@ public class MemberQueryController {
         }
         return ResponseEntity.ok("아이디 찾기 완료! \n 이메일: " + memberDTO.getEmail());
     }
-
-    @GetMapping("/find-password")
-    public ResponseEntity<?> findPassword(@RequestParam("name") String name, @RequestParam("email") String email) {
-        MemberQueryDTO memberDTO = memberService.findMemberByNameAndEmail(name, email);
-        if (memberDTO == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("회원 정보가 일치하지 않습니다.");
-        }
-        return ResponseEntity.ok("비밀번호 찾기 완료!");
-    }
+//
+//    @GetMapping("/find-password")
+//    public ResponseEntity<?> findPassword(@RequestParam("name") String name, @RequestParam("email") String email) {
+//        MemberQueryDTO memberDTO = memberService.findMemberByNameAndEmail(name, email);
+//        if (memberDTO == null) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("회원 정보가 일치하지 않습니다.");
+//        }
+//        return ResponseEntity.ok("비밀번호 찾기 완료!");
+//    }
 }
 

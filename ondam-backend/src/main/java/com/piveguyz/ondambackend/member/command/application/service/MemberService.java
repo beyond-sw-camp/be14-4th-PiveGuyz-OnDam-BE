@@ -13,4 +13,6 @@ public interface MemberService {
     void plusPoint(Long id);
 
     void minusPoint(Long id);
+
+    String resetPasswordWithTemp(String name, String email);
 }
