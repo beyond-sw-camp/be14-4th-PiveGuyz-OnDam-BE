@@ -14,11 +14,6 @@ public class ChatGPTConfig {
     @Value("${openai.api.key}")
     private String gptAPIKey;
 
-    @PostConstruct
-    public void checkKey() {
-        System.out.println("✅ OpenAI API Key = " + gptAPIKey);
-    }
-
     @Bean
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
