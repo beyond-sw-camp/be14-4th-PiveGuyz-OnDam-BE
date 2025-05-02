@@ -511,14 +511,253 @@
 <br><br>
 
 # 🛜 배포
-## CI/CD 아키텍처
+
+<details><summary>🌐 Ingress 설정 (ondam-ingress)</summary>
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ondam-ingress
+  namespace: ondam
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: ondam-back-ser
+                port:
+                  number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ondam-front-ser
+                port:
+                  number: 80
+```
+
+</details>
+
+<details><summary>🚀 Backend Deployment (ondam-back-dep)</summary>
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ondam-back-dep
+  namespace: ondam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ondam-backend
+  template:
+    metadata:
+      labels:
+        app: ondam-backend
+    spec:
+      containers:
+        - name: ondam-backend
+          image: morris235/ondam-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+```
+
+</details>
+
+<details><summary>🔧 Backend Service (ondam-back-ser)</summary>
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ondam-back-ser
+  namespace: ondam
+spec:
+  type: NodePort
+  selector:
+    app: ondam-backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30083
+```
+
+</details>
+
+<details><summary>🚀 Frontend Deployment (ondam-front-dep)</summary>
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ondam-front-dep
+  namespace: ondam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ondam-frontend
+  template:
+    metadata:
+      labels:
+        app: ondam-frontend
+    spec:
+      containers:
+        - name: ondam-frontend
+          image: morris235/ondam-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+```
+
+</details>
+
+<details><summary>🔧 Frontend Service (ondam-front-ser)</summary>
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ondam-front-ser
+  namespace: ondam
+spec:
+  selector:
+    app: ondam-frontend
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+```
+
+</details>
 
 
-## jenkinsfile 코드
+---
 
+<details><summary>🧩 CI/CD 구성 개요</summary>
 
-## CI/CD 테스트 결과
+- **멀티 레포 구성**: `frontend/`, `backend/`를 Git Submodule로 관리  
+- **CI (Jenkins)**: 변경된 서비스만 빌드 및 Docker Hub에 이미지 푸시  
+- **CD (Argo CD)**: Git 상태와 Kubernetes 클러스터 자동 동기화  
+- **Docker**: Apple Silicon 대응 multi-arch 이미지 빌드  
+- **Kubernetes**: 무중단 배포를 위한 `rollout restart` 전략 적용  
 
+</details>
+
+<details><summary>🛎️ 초기 수동 배포 → Jenkins 자동화 전환</summary>
+
+#### ✴️ 수동 배포 당시
+- `build-*.sh`, `deploy-*.sh` 와 같은 스크립트를 직접 만들어 실행  
+- 반복 작업과 실수 발생 확률 줄임  
+- 명령어 문서화 효과로 추후 리마인드 가능  
+
+#### ✅ Jenkins 도입 후
+- Webhook 기반 자동 트리거  
+- 변경된 서비스만 선택적으로 빌드/배포  
+- **무중단 배포 (`rollout restart`) 지원**  
+- `.yml` 수정까지 포함하여 **Argo CD에 반영 가능**  
+
+</details>
+
+<details>
+  
+<summary>⚙️ Jenkins + Argo CD 파이프라인 흐름</summary>
+
+#### ✅ Jenkins (CI)
+- GitHub Webhook 기반 트리거 (main 브렌치)  
+- 하나의 webhook 신호로 서브모듈별 변경 감지 → 프론트와 백엔드 각각 배포  
+- Docker 이미지 빌드 및 Push  
+- `k8s/*.yml` 이미지 태그 업데이트 후 Git push
+![ondam-jenkins](https://github.com/user-attachments/assets/cc615626-fab8-4d35-a916-b8ade3d4d042)
+
+#### ✅ Argo CD (CD)
+- Git 상태 감지 → 클러스터 상태 자동 동기화  
+- UI로 배포 상태 모니터링 및 롤백 지원
+
+<img width="1452" alt="argocd-sync" src="https://github.com/user-attachments/assets/58221e60-d3b2-4b85-9aa5-a351c7f3711e" />
+
+<img width="1439" alt="argocd-status2-1" src="https://github.com/user-attachments/assets/0ab763b5-ad79-46af-9d47-1e90df9d9e6d" />
+
+<img width="1442" alt="argocd-status2-2" src="https://github.com/user-attachments/assets/63c6faca-aa1e-429c-b85a-db5828dfc96c" />
+
+</details>
+
+<details><summary>🧱 멀티레포 구성의 장단점</summary>
+
+#### 장점
+- **독립적인 빌드 및 배포 가능**  
+  - 프론트 변경 시 → `frontend`만 빌드/배포  
+  - 백엔드 변경 시 → `backend`만 빌드/배포  
+  - Jenkins는 메인 레포 기준으로 하나의 Webhook을 받아 git diff로 변경 감지 후 해당 서브모듈만 빌드 & 배포  
+
+- **협업 효율 증가**  
+  - 팀원 간 코드 충돌 최소화  
+  - 개발과 배포작업을 병렬적으로 처리 가능  
+
+#### 단점
+- **submodule 동기화 이슈**  
+  - git submodule update, status, 커밋 누락 등의 실수 발생 가능  
+  - 프론트/백을 수정한 뒤 메인 레포에서 커밋 포인터를 갱신해야 하는 작업 오버헤드 발생  
+
+- **구조적 문제**  
+  - Github Actions등 다른 CI를 쓰기 어렵고, Jenkins 중심 구조가 고착됨  
+  - submodule이 늘어 날수록 유지보수가 어려워짐 (2~3개가 한계)  
+  - 하나의 파이프라인으로 N개 이상의 서비스를 배포하기 때문에 복잡성이 증가하고 이력관리가 어려움  
+
+</details>
+
+<details><summary>🚀 Argo CD를 통한 무중단 배포</summary>
+
+- `main` 브랜치의 `k8s/*.yml`이 변경되면 Argo CD가 자동 감지  
+- `kubectl rollout restart` 명령과 함께 사용하면,  
+  Pod 교체 과정에서 기존 트래픽은 유지되므로 **무중단 배포가 가능**  
+
+</details>
+
+<details><summary>✅ 실행 결과 요약</summary>
+
+1. GitHub → `main` 브랜치에 push 발생  
+2. Jenkins Webhook 트리거 → 파이프라인 실행  
+3. 변경된 서비스만 빌드 및 Docker 이미지 생성  
+4. DockerHub 푸시 + `k8s/*.yml` 수정 및 Git push  
+5. Argo CD가 자동 감지 → 클러스터 동기화  
+6. **frontend/back 각각의 변경에 대해 독립적, 무중단 배포 실행**  
+
+</details>
+
+<details><summary>🌿 브랜치 전략 및 배포 흐름</summary>
+
+#### 🗂 배포 브랜치 구조
+
+- `develop`: 기능 개발 및 통합 테스트 진행  
+- `deploy/dev-snapshot`: 배포 직전 단계의 검증 브랜치  
+
+#### 🔗 멀티레포 연동 방식
+
+- `frontend/`, `backend/`는 각각 별도의 독립 레포로 운영됨  
+- 메인 레포인 `be14-4th-piveguyz-ondam`에는 두 레포가 Git Submodule로 연결되어 있음  
+- 브랜치 전략은 **서브모듈에서도 동일하게 적용**되며,  
+  - `develop` → `deploy/dev-snapshot` → 메인 레포의 main 브렌치에 반영 → jenkins, Argo CD 배포 흐름으로 이어짐  
+
+#### ✅ 흐름 요약
+
+1. 기능은 각 서비스 레포의 `develop` 브랜치에서 개발  
+2. 기능 완료 시 `deploy/dev-snapshot`로 머지하여 배포 대상 확정  
+3. 메인 레포지토리의 Submodule을 업데이트하여 `main` 브랜치로 커밋  
+4. Jenkins → Argo CD로 이어지는 자동화 배포 트리거  
+
+</details>
 
 <br><br>
 
