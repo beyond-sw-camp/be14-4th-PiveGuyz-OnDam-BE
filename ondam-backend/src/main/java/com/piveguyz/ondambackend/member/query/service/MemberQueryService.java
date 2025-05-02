@@ -7,7 +7,7 @@ import java.util.List;
 public interface MemberQueryService {
     List<MemberQueryDTO> selectAllMembers();
 
-    boolean loginMember(String email, String password);
+    MemberQueryDTO loginMember(String email, String password);
 
     MemberQueryDTO findMemberById(Long id);
 
