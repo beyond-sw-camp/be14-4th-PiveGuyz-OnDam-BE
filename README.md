@@ -44,6 +44,8 @@
 <br><br>
 
 ## 🙆‍♀️ 요구사항 명세서
+🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR__7O6DlnXXUGEaxhkK_3oesVtv2Zx80H0IAnnmE2s9OVIhTcCT-D-HdJnyqEubRVIg5wPHXdzKU84/pubhtml?gid=1463868282&single=true"> 요구사항 명세서 자세히 보기</a><br>
+<img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/RequirementSpecification/SRS.png?raw=true" width = "1000"/>
 
 <br><br>
 
@@ -86,273 +88,273 @@
 
 ### 1. Member
 <details><summary> 전체 회원 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/select_all_member.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/select_all_member.png" width="600" />
 </details>
 
 <details><summary> id로 회원 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/select_member_by_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/select_member_by_id.png" width="600" />
 </details>
 
 <details><summary> id 찾기 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/find_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/find_id.png" width="600" />
 </details>
 
 <details><summary> 비밀번호 찾기 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/find_pwd.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/find_pwd.png" width="600" />
 </details>
 
 <details><summary> 로그인 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/login.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/login.png" width="600" />
 </details>
 
 <details><summary> 비밀번호 변경 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/change_password.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/change_password.png" width="600" />
 </details>
 
 <details><summary> 회원 탈퇴 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/delete_member.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/member/delete_member.png" width="600" />
 </details>
 
 ### 2. Counselee
 <details><summary> id로 내담자 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/select_counselee_by_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/select_counselee_by_id.png" width="600" />
 </details>
 
 <details><summary> 상담자id로 내담자 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/select_counselee_by_counselor_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/select_counselee_by_counselor_id.png" width="600" />
 </details>
 
 <details><summary> 내담자 생성 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/create_counselee.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/create_counselee.png" width="600" />
 </details>
 
 <details><summary> 내담자 삭제 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/delete_counselee.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/delete_counselee.png" width="600" />
 </details>
 
 <details><summary> 내담자 이름 검색 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/search_counselee_name.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/search_counselee_name.png" width="600" />
 </details>
 
 <details><summary> 상담자id로 내담자 수 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/select_counselee_count_by_counselor_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/select_counselee_count_by_counselor_id.png" width="600" />
 </details>
 
 <details><summary> 상담자id로 활성화 내담자 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/select_activated_counselee_by_counselor_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counselee/select_activated_counselee_by_counselor_id.png" width="600" />
 </details>
 
 ### 3. Counsel
 <details><summary> 상담사id로 상담 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_by_counselor_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_by_counselor_id.png" width="600" />
 </details>
 
 <details><summary> 내담자id로 상담 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_by_counselee_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_by_counselee_id.png" width="600" />
 </details>
 
 <details><summary> 상담 기록 상세 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_detail.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_detail.png" width="600" />
 </details>
 
 <details><summary> 기간별 상담 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_by_timestamp.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_by_timestamp.png" width="600" />
 </details>
 
 <details><summary> 예정된 상담 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_future.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/select_counsel_future.png" width="600" />
 </details>
 
 <details><summary> 상담 생성 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/create_counsel.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/create_counsel.png" width="600" />
 </details>
 
 <details><summary> 상담 수정 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/update_counsel.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/update_counsel.png" width="600" />
 </details>
 
 <details><summary> 다음 상담 일시 등록 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/patch_counsel_next_date.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/patch_counsel_next_date.png" width="600" />
 </details>
 
 <details><summary> 상담 삭제 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/delete_counsel.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/counsel/delete_counsel.png" width="600" />
 </details>
 
 ### 4. Analysis
 <details><summary> ChatGPT 분석 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/ChatGPT.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/ChatGPT.png" width="600" />
 </details>
 
 <details><summary> 상담id로 분석 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/select_analysis_by_counsel_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/select_analysis_by_counsel_id.png" width="600" />
 </details>
 
 ### 4-1. Emotion
 <details><summary> 감정 등록 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/create_emotion.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/create_emotion.png" width="600" />
 </details>
 
 <details><summary> 감정 수정 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/update_emotion.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/update_emotion.png" width="600" />
 </details>
 
 <details><summary> 감정 삭제 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/delete_emotion.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/delete_emotion.png" width="600" />
 </details>
 
 ### 4-2. Emotion Category
 <details><summary> 감정 카테고리 등록 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/create_emotion_category.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/create_emotion_category.png" width="600" />
 </details>
 
 <details><summary> 감정 카테고리 수정 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/update_emotion.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/update_emotion.png" width="600" />
 </details>
 
 <details><summary> 감정 카테고리 삭제 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/delete_emotion_category.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/analysis/delete_emotion_category.png" width="600" />
 </details>
 
 ### 5. Diary
 <details><summary> 전체 일기 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/select_all_diary.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/select_all_diary.png" width="600" />
 </details>
 
 <details><summary> 일기id로 일기 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/select_diary_by_diary_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/select_diary_by_diary_id.png" width="600" />
 </details>
 
 <details><summary> 작성자id로 일기 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/select_diary_by_writer_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/select_diary_by_writer_id.png" width="600" />
 </details>
 
 <details><summary> 일기 작성 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/create_diary.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/create_diary.png" width="600" />
 </details>
 
 <details><summary> 일기 삭제 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/delete_diary.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diary/delete_diary.png" width="600" />
 </details>
 
 ### 6. Diary Record
 <details><summary> 전체 일기 발송 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_all_diaryRecord.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_all_diaryRecord.png" width="600" />
 </details>
 
 <details><summary> id로 일기 발송 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_diaryRecord_by_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_diaryRecord_by_id.png" width="600" />
 </details>
 
 <details><summary> 일기id로 일기 발송 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_diaryRecord_by_diary_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_diaryRecord_by_diary_id.png" width="600" />
 </details>
 
 <details><summary> 수신자로 일기 발송 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_diaryRecord_by_receiver_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_diaryRecord_by_receiver_id.png" width="600" />
 </details>
 
 <details><summary> 일기id, 수신자id로 일기 발송 기록 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_diaryRecord_by_diaryId_receiverId.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/select_diaryRecord_by_diaryId_receiverId.png" width="600" />
 </details>
 
 <details><summary> 일기 발송 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/send_diary.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/diaryRecord/send_diary.png" width="600" />
 </details>
 
 ### 7. Reply
 <details><summary> 답장 전체 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/select_all_reply.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/select_all_reply.png" width="600" />
 </details>
 
 <details><summary> id로 답장 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/select_reply_by_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/select_reply_by_id.png" width="600" />
 </details>
 
 <details><summary> 일기id로 답장 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/select_reply_by_diary_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/select_reply_by_diary_id.png" width="600" />
 </details>
 
 <details><summary> 작성자id로 답장 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/select_reply_by_writer_id.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/select_reply_by_writer_id.png" width="600" />
 </details>
 
 <details><summary> 답장 작성 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/write_reply.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/write_reply.png" width="600" />
 </details>
 
 <details><summary> 답장 삭제 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/delete_reply.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/reply/delete_reply.png" width="600" />
 </details>
 
 ### 8. Report
 <details><summary> 신고 전체 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/all_report.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/all_report.png" width="600" />
 </details>
 
 <details><summary> 신고 상세 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_detail.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_detail.png" width="600" />
 </details>
 
 <details><summary> 신고 컨텐츠 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/select_category_content.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/select_category_content.png" width="600" />
 </details>
 
 <details><summary> 신고 카테고리 전체 조회 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/select_all_report_category.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/select_all_report_category.png" width="600" />
 </details>
 
 <details><summary> 일기 신고 등록 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_diary.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_diary.png" width="600" />
 </details>
 
 <details><summary> 답장 신고 등록 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_reply.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_reply.png" width="600" />
 </details>
 
 <details><summary> 신고 처리 상태 변경 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_update.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/report_update.png" width="600" />
 </details>
 
 <details><summary> 신고 승인된 일기/답장 블라인드 처리 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/blind_report.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/blind_report.png" width="600" />
 </details>
 
 <details><summary> 신고 삭제 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/delete_report.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/delete_report.png" width="600" />
 </details>
 
 <details><summary> 신고 카테고리 등록 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/create_report_category.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/create_report_category.png" width="600" />
 </details>
 
 <details><summary> 신고 카테고리 수정 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/update_report_category.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/update_report_category.png" width="600" />
 </details>
 
 <details><summary> 신고 카테고리 삭제 </summary>
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/delete_report_category.png">
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/PostmanPictureAPI/report/delete_report_category.png" width="600" />
 </details>
 
 
 <br><br>
 
 ## 🚩 단위 테스트
-<img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Summary.png">
+<img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Summary.png" width="600" />
 
 <details>
   
   ### 1. Member
   <details><summary> Summary </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberTestSummary.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberTestSummary.png" width="600" />
   </details>
   
   <details><summary> Member Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberCommandTest.png" width="600" />
   </details>
   
   <details><summary> Member Query Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberQueryTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Member/MemberQueryTest.png" width="600" />
   </details>
   
   ### 2. Counselee
@@ -371,75 +373,75 @@
   </details>
   
   <details><summary> Analysis Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/AnalysisCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/AnalysisCommandTest.png" width="600" />
   </details>
   
   <details><summary> Analysis Query Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/AnalysisQueryTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/AnalysisQueryTest.png" width="600" />
   </details>
   
   <details><summary> Emotion Category Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/EmotionCategoryCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/EmotionCategoryCommandTest.png" width="600" />
   </details>
   
   <details><summary> Emotion Category Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/EmotionCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Analysis/EmotionCommandTest.png" width="600" />
   </details>
   
   ### 5. Diary
   <details><summary> Summary </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryTestSummary.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryTestSummary.png" width="600" />
   </details>
   
   <details><summary> Diary Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryCommandTest.png" width="600" />
   </details>
   
   <details><summary> Diary Query Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryQueryTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Diary/DiaryQueryTest.png" width="600" />
   </details>
   
   ### 6. Diary Record
   <details><summary> Summary </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordTestSummary.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordTestSummary.png" width="600" />
   </details>
   
   <details><summary> Diary Record Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordCommandTest.png" width="600" />
   </details>
   
   <details><summary> Diary Record Query Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordQueryTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/DiaryRecord/DiaryRecordQueryTest.png" width="600" />
   </details>
   
   ### 7. Reply
   <details><summary> Summary </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyTestSummary.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyTestSummary.png" width="600" />
   </details>
   
   <details><summary> Reply Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyCommandTest.png" width="600" />
   </details>
   
   <details><summary> Reply Query Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyQueryTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Reply/ReplyQueryTest.png" width="600" />
   </details>
   
   ### 8. Report
   <details><summary> Summary </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportTestSummary.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportTestSummary.png" width="600" />
   </details>
   
   <details><summary> Report Category Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportCategoryCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportCategoryCommandTest.png" width="600" />
   </details>
   
   <details><summary> Report Command Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportCommandTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportCommandTest.png" width="600" />
   </details>
   
   <details><summary> Report Query Test </summary>
-    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportQueryTest.png">
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Report/ReportQueryTest.png" width="600" />
   </details>
   
 </details>
