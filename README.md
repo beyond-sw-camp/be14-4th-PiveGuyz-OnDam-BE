@@ -481,9 +481,32 @@
 ### 3. Counsel
 ### 4. Analysis
 ### 5. Diary
-### 6. Diary Record
-### 7. Reply
-### 8. Report
+<details><summary> 일기 조회 </summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/GIF/diary/DiaryPage.gif"/>
+</details>
+
+<details><summary> 일기 작성 </summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/GIF/diary/WriteDiary.gif"/>
+</details>
+
+<details><summary> 일기 삭제 </summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/GIF/diary/DeleteDiary.gif"/>
+</details>
+
+### 6. Reply
+<details><summary> 답장 조회 </summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/GIF/diary/ReadReply.gif"/>
+</details>
+
+<details><summary> 답장 작성 </summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/GIF/diary/WriteReply.gif"/>
+</details>
+
+<details><summary> 답장 삭제 </summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/GIF/diary/DeleteMyReply.gif"/>
+</details>
+
+### 7. Report
 
 <br><br>
 
