@@ -15,4 +15,6 @@ public interface MemberMapper {
     MemberQueryDTO findMemberByNameAndPhone(@Param("name") String name, @Param("phone") String phone);
 
     MemberQueryDTO findMemberByNameAndEmail(@Param("name") String name, @Param("email") String email);
+
+    MemberQueryDTO findMemberByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 }
