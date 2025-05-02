@@ -75,8 +75,29 @@
 
 ### 1. Member
 ### 2. Counselee
+<details><summary> 내담자 등록 </summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/insert_counselee.png?raw=true" width="100%" />
+</details>
+
+<details><summary> 내담자별 상담 일지 조회</summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/counselees.png?raw=true" width="100%" />
+</details>
+
 ### 3. Counsel
+<details><summary> 상담 일지 작성</summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/create_counsel.png?raw=true" width="100%" />
+</details>
+
+<details><summary> 상담 일지 작성 취소</summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/cancel_counsel.png?raw=true" width="100%" />
+</details>
+
 ### 4. Analysis
+<details><summary> 상담 일지 상세 확인</summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/counsel_1.png?raw=true" width="100%" /> <br />
+    <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/counsel_2.png?raw=true" width="100%" />
+</details>
+
 ### 5. Diary
 ### 6. Diary Record
 ### 7. Reply
