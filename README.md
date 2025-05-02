@@ -4,30 +4,30 @@
 
 <br><br>
 
-## 🔖 목차
+# 🔖 목차
 
 <br><br>
 
-## 📢 프로젝트 개요
+# 📢 프로젝트 개요
 
 <br><br>
 
-## 🛠️기술 스택
-### FrontEnd
+# 🛠️기술 스택
+## FrontEnd
 ![Vue](https://img.shields.io/badge/Vue%203-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JSON Server](https://img.shields.io/badge/JSON%20Server-black?style=for-the-badge)
 
-### BackEnd
+## BackEnd
 ![Java](https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white)
 ![SpringBoot](https://img.shields.io/badge/springBoot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 
-### DataBase
+## DataBase
 ![MariaDB](https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white")
 
-### Tool
+## Tool
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
@@ -35,65 +35,70 @@
 
 <br><br>
 
-## 🪄 시스템 아키텍처
+# 🪄 시스템 아키텍처
 
 <br><br>
 
-## 💡 주요 기능
+# 💡 주요 기능
 
 <br><br>
 
-## 🙆‍♀️ 요구사항 명세서
+# 🙆‍♀️ 요구사항 명세서
 🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR__7O6DlnXXUGEaxhkK_3oesVtv2Zx80H0IAnnmE2s9OVIhTcCT-D-HdJnyqEubRVIg5wPHXdzKU84/pubhtml?gid=1463868282&single=true"> 요구사항 명세서 자세히 보기</a><br>
 <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/RequirementSpecification/SRS.png?raw=true" width = "1000"/>
 
 <br><br>
 
-## 📅 WBS
+# 📅 WBS
 🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR__7O6DlnXXUGEaxhkK_3oesVtv2Zx80H0IAnnmE2s9OVIhTcCT-D-HdJnyqEubRVIg5wPHXdzKU84/pubhtml?gid=2031264111&single=true"> WBS 자세히 보기</a><br> <br>
 <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/WBS/wbs.png?raw=true" width = "1000"/>
 
 <br><br>
 
-## 💭 DDD 설계
+# 💭 DDD 설계
 
 <br><br>
 
-## 🗃️ DB 모델링
-### 논리 모델링
+# 🗃️ DB 모델링
+## 논리 모델링
 
 
-### 물리 모델링
+## 물리 모델링
 
 <br><br>
 
-## 🖼️ 화면 설계
-### 와이어 프레임
+# 🖼️ 화면 설계
+## 와이어 프레임
 
 
-### UI 설계
+## UI 설계
+### 0. Main
+<details><summary>메인 화면</summary>
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/main/main.png?raw=true" width="100%" />
+</details>
 
 ### 1. Member
+
 ### 2. Counselee
-<details><summary> 내담자 등록 </summary>
+<details><summary>내담자 등록</summary>
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/insert_counselee.png?raw=true" width="100%" />
 </details>
 
-<details><summary> 내담자별 상담 일지 조회</summary>
+<details><summary>내담자별 상담 일지 조회</summary>
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/counselees.png?raw=true" width="100%" />
 </details>
 
 ### 3. Counsel
-<details><summary> 상담 일지 작성</summary>
+<details><summary>상담 일지 작성</summary>
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/create_counsel.png?raw=true" width="100%" />
 </details>
 
-<details><summary> 상담 일지 작성 취소</summary>
+<details><summary>상담 일지 작성 취소</summary>
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/cancel_counsel.png?raw=true" width="100%" />
 </details>
 
 ### 4. Analysis
-<details><summary> 상담 일지 상세 확인</summary>
+<details><summary>상담 일지 상세 확인</summary>
   <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/counsel_1.png?raw=true" width="100%" /> <br />
     <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ScreenDesign/counsel/counsel_2.png?raw=true" width="100%" />
 </details>
@@ -105,7 +110,7 @@
 
 <br><br>
 
-## 📑 API 명세서
+# 📑 API 명세서
 
 ### 1. Member
 <details><summary> 전체 회원 조회 </summary>
@@ -360,7 +365,7 @@
 
 <br><br>
 
-## 🚩 단위 테스트
+# 🚩 단위 테스트
 <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/TestCase/Summary.png" width="600" />
 
 <details>
@@ -469,7 +474,7 @@
 
 <br><br>
 
-## ✍🏻 API TEST
+# ✍🏻 API TEST
 
 ### 1. Member
 ### 2. Counselee
@@ -482,23 +487,23 @@
 
 <br><br>
 
-## 🛜 배포
-### CI/CD 아키텍처
+# 🛜 배포
+## CI/CD 아키텍처
 
 
-### jenkinsfile 코드
+## jenkinsfile 코드
 
 
-### CI/CD 테스트 결과
+## CI/CD 테스트 결과
 
 
 <br><br>
 
-## 🔜 향후 확장 계획
+# 🔜 향후 확장 계획
 
 <br><br>
 
-## 동료평가
+# 동료평가
 |곽우석| peer review |
 |:---:|-|
 |김석희| 평가 내용 |
