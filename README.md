@@ -1117,6 +1117,11 @@ spec:
 
 <details><summary>🌿 브랜치 전략 및 배포 흐름</summary>
 
+#### 📦 Deployment Repository
+
+🔗 [be14-4th-piveguyz-ondam-deploy](https://github.com/Pive-Guyz/be14-4th-piveguyz-ondam-deploy)  
+- CI/CD, Kubernetes 설정, Argo CD 구성 등을 포함한 **통합 배포 전용 레포지토리**입니다.
+
 #### 🗂 배포 브랜치 구조
 
 - `develop`: 기능 개발 및 통합 테스트 진행  
