@@ -125,10 +125,6 @@
 
 <br><br>
 
-# 🪄 시스템 아키텍처
-  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ProjectArchitecture/ondam_project_architecture.png?raw=true"/>
-<br><br>
-
 # 💡 주요 기능
 
 ### 1. 상담 기록 보조
@@ -803,6 +799,11 @@
 
 # 🛜 배포
 
+## 시스템 아키텍처
+  <img src="https://github.com/Pive-Guyz/ondam-backend/blob/develop/document/ProjectArchitecture/ondam_project_architecture.png?raw=true"/>
+
+---
+  
 <details><summary>🌐 Ingress 설정 (ondam-ingress)</summary>
 
 ```yaml
@@ -942,7 +943,6 @@ spec:
 - **CI (Jenkins)**: 변경된 서비스만 빌드 및 Docker Hub에 이미지 푸시  
 - **CD (Argo CD)**: Git 상태와 Kubernetes 클러스터 자동 동기화  
 - **Docker**: Apple Silicon 대응 multi-arch 이미지 빌드  
-- **Kubernetes**: 무중단 배포를 위한 `rollout restart` 전략 적용  
 
 </details>
 
@@ -956,9 +956,98 @@ spec:
 #### ✅ Jenkins 도입 후
 - Webhook 기반 자동 트리거  
 - 변경된 서비스만 선택적으로 빌드/배포  
-- **무중단 배포 (`rollout restart`) 지원**  
 - `.yml` 수정까지 포함하여 **Argo CD에 반영 가능**  
 
+</details>
+
+<details>
+  <summary>📦 JenkinsFile</summary>
+
+#### SCM Chek
+```
+        stage('SCM Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/Pive-Guyz/be14-4th-piveguyz-ondam.git'
+                    ]],
+                    extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true]]
+                ])
+            }
+        }
+```
+
+#### Detect Changes
+```
+        stage('Inject application.yml for Test') {
+            when {
+                expression { env.BACKEND_CHANGED == 'true' }
+            }
+            steps {
+                withCredentials([file(credentialsId: 'app-yml-ci', variable: 'APP_YML_CI')]) {
+                    sh '''
+                        mkdir -p backend/ondam-backend/src/main/resources
+                        chmod -R u+w backend/ondam-backend/src/main/resources
+                        cp "$APP_YML_CI" backend/ondam-backend/src/main/resources/application.yml
+                    '''
+                }
+            }
+        }
+```
+
+#### Inject application.yml
+```
+        stage('Inject application.yml for Docker Build') {
+            when {
+                expression { env.BACKEND_CHANGED == 'true' }
+            }
+            steps {
+                withCredentials([file(credentialsId: 'app-yml-file', variable: 'APP_YML_DEPLOY')]) {
+                    sh '''
+                        mkdir -p backend/ondam-backend/src/main/resources
+                        chmod -R u+w backend/ondam-backend/src/main/resources
+                        cp "$APP_YML_DEPLOY" backend/ondam-backend/src/main/resources/application.yml
+                    '''
+                }
+            }
+        }
+```
+
+#### Kubernetes Backend Deploy
+```
+        stage('Kubernetes Backend Deploy') {
+            when {
+                expression { env.BACKEND_CHANGED == 'true' }
+            }
+            steps {
+                sh '''
+                    kubectl create namespace ondam 2>/dev/null || echo "Namespace already exists"
+                    kubectl apply -f k8s/ondam-back-dep.yml
+                    kubectl apply -f k8s/ondam-back-ser.yml
+                    kubectl rollout restart deployment ondam-back-dep -n ondam
+                '''
+            }
+        }
+```
+
+#### Kubernetes Frontend Deploy
+```
+        stage('Kubernetes Frontend Deploy') {
+            when {
+                expression { env.FRONTEND_CHANGED == 'true' }
+            }
+            steps {
+                sh '''
+                    kubectl create namespace ondam 2>/dev/null || echo "Namespace already exists"
+                    kubectl apply -f k8s/ondam-front-dep.yml
+                    kubectl apply -f k8s/ondam-front-ser.yml
+                    kubectl rollout restart deployment ondam-front-dep -n ondam
+                '''
+            }
+        }
+```
 </details>
 
 <details>
@@ -1011,7 +1100,6 @@ spec:
 <details><summary>🚀 Argo CD를 통한 무중단 배포</summary>
 
 - `main` 브랜치의 `k8s/*.yml`이 변경되면 Argo CD가 자동 감지  
-- `kubectl rollout restart` 명령과 함께 사용하면,  
   Pod 교체 과정에서 기존 트래픽은 유지되므로 **무중단 배포가 가능**  
 
 </details>
